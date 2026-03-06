@@ -4,15 +4,20 @@ import TopBg from "@/components/ui/TopBg.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
 import TrackGa from "@/components/widgets/TrackGa.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
 	keywords?: string | undefined;
 }
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const {
-	title,
-	description,
+	title = t('site.title'),
+	description = t('site.description'),
 	keywords
 } = Astro.props;
 

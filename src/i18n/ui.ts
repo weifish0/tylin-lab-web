@@ -48,6 +48,10 @@ export const ui = {
     'contact.university': '國立清華大學',
     'contact.address1': '300044 新竹市光復路二段101號',
     'contact.address2': '',
+
+    // SEO / Meta
+    'site.title': 'TYLin Lab | 林姿瑩實驗室 - 能源材料與薄膜太陽能電池',
+    'site.description': '清華大學林姿瑩老師 (TYLin Lab) 研究領域涵蓋前瞻儲能材料、CIGS薄膜太陽能電池、固態電池與新型電解質系統。',
   },
   en: {
     // Menu
@@ -90,6 +94,10 @@ export const ui = {
     'contact.university': 'National Tsing Hua University',
     'contact.address1': '101, Section 2, Kuang-Fu Road',
     'contact.address2': 'Hsinchu 300044, Taiwan',
+
+    // SEO / Meta
+    'site.title': 'TYLin Lab – Energy Materials & Thin-Film Photovoltaics',
+    'site.description': 'TYLin Lab at National Tsing Hua University focuses on sustainable energy storage materials, CIGS thin-film solar cells, solid-state batteries, and advanced electrolyte systems.',
   },
   ja: {
     // Menu
@@ -132,5 +140,9 @@ export const ui = {
     'contact.university': '国立清華大学',
     'contact.address1': '300044 新竹市光復路二段101号',
     'contact.address2': '台湾',
+
+    // SEO / Meta
+    'site.title': 'TYLin Lab | 林姿瑩研究室 - エネルギー材料と薄膜太陽電池',
+    'site.description': '国立清華大学の林姿瑩研究室 (TYLin Lab) では、次世代蓄電材料、CIGS薄膜太陽電池、全固体電池などを研究しています。',
   },
 } as const;

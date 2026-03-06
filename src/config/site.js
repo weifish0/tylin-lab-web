@@ -16,7 +16,7 @@ export const siteConfig = {
 		title: "TYLin Lab – Energy Materials & Thin-Film Photovoltaics",
 		description: "TYLin Lab at National Tsing Hua University focuses on sustainable energy storage materials, CIGS thin-film solar cells, solid-state batteries, and advanced electrolyte systems.",
 		keywords: "TYLin Lab, CIGS solar cells, lithium-ion battery, solid-state electrolyte, energy materials, NTHU, 林姿瑩",
-		image: `${SITE_URL}/og.jpg`,
+		image: `${SITE_URL}/logo.png`,
 		twitterHandle: "",
 	},
 	social:{
