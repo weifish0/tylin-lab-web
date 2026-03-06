@@ -1,0 +1,116 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const awardsItems = [
+  {
+    date: "2025/08",
+    zh: "恭喜本實驗室受邀作為國研院國網中心(TAIWAN AI RAP)第二階段試營運的入選團隊。",
+    en: "Congratulations that the ADVANCED THIN FILM ENERGY MATERIALS LABORATORY has been invited as a selected team for the second phase of the Taiwan AI RAP trial operation at National Center for High-Performance Computing, NARLabs."
+  },
+  {
+    date: "2025/05",
+    zh: "恭喜本實驗室受邀作為國研院國網中心(TAIWAN AI RAP)第一階段試營運的入選團隊。",
+    en: "Congratulations that the ADVANCED THIN FILM ENERGY MATERIALS LABORATORY has been invited as a selected team for the first phase of the Taiwan AI RAP trial operation at National Center for High-Performance Computing, NARLabs."
+  },
+  {
+    date: "2024/11",
+    zh: "恭喜曾暄凱同學榮獲2024材料年會優秀學生論文獎。",
+    en: "Congratulations that PhD student Hsuan-Kai Tseng has been awarded as the Excellent Student Paper Award of MRSTIC(材料年會) 2024."
+  },
+  {
+    date: "2024/11",
+    zh: "恭喜黃怡禎同學榮獲2024材料年會優秀海報獎。",
+    en: "Congratulations that Undergraduated student Yi-Chen Huang has been awarded as the Excellent Poster Award of MRSTIC(材料年會) 2024."
+  },
+  {
+    date: "2024/11",
+    zh: "恭喜張馥薇同學榮獲2024材料年會最佳海報獎。",
+    en: "Congratulations that Master student Fu-Wei Chang has been awarded as the Best Poster Award of MRSTIC(材料年會) 2024."
+  },
+  {
+    date: "2024/06",
+    zh: "恭喜賴倢玗同學榮獲2024 IEEE PVSC 52最佳報告獎。",
+    en: "Congratulations that Master student Chieh-Yu Lai has been awarded as the Best Presentation Award of 2024 IEEE PVSC 52."
+  },
+  {
+    date: "2024/06",
+    zh: "恭喜林韋志同學榮獲斐陶斐榮譽會員。",
+    en: "Congratulations that Master student Wei-Chih Lin has been awarded as 2024 Phi Tau Phi Member(斐陶斐榮譽會員)."
+  },
+  {
+    date: "2024/05",
+    zh: "恭喜陳瑋皇同學榮獲2024清華大學工學院論文競賽優秀海報獎。",
+    en: "Congratulations that Master student Wei-Huang Chen has been awarded as the Excellent Poster Award of 2024 Thesis Presentation Competition College of Engineering NTHU(工學院論文競賽)."
+  },
+  {
+    date: "2023/11",
+    zh: "恭喜曾暄凱同學榮獲2023材料年會最佳海報獎。",
+    en: "Congratulations that Master student Hsuan-Kai Tseng has been awarded as the Best Poster Award of MRSTIC(材料年會) 2023."
+  },
+  {
+    date: "2023/11",
+    zh: "恭喜賴倢玗同學榮獲2023材料年會優秀海報獎。",
+    en: "Congratulations that Master student Chieh-Yu Lai has been awarded as the Excellent Poster Award of MRSTIC(材料年會) 2023."
+  },
+  {
+    date: "2023/11",
+    zh: "恭喜林韋志同學榮獲2023材料年會優秀海報獎。",
+    en: "Congratulations that Master student Wei-Chih Lin has been awarded as the Excellent Poster Award of MRSTIC(材料年會) 2023."
+  },
+  {
+    date: "2022/11",
+    zh: "恭喜鄧榮頡同學榮獲2022 ICGET-TW暨 ECS-TW金獎。",
+    en: "Congratulations that Master student Jung-Chieh Teng has been awarded as the Gold Award of 2022 ICGET- Tw(綠色電化學科技國際研討會) & ECS- Tw."
+  },
+  {
+    date: "2022/11",
+    zh: "恭喜郭睿彤同學榮獲清華大學材料科學工程學系獎學金。",
+    en: "Congratulations that Doctoral student Rui-Tung Kuo has been achieved the scholarship from NTHU MSE."
+  },
+  {
+    date: "2022/04",
+    zh: "恭喜陳永璇同學榮獲 2022清華大學工學院論文競賽佳作獎。",
+    en: "Congratulations that Master student Yung-Hsuan Chen has been awarded as the Honorable Mention Award of 2022 Thesis Presentation Competition College of Engineering NTHU(工學院論文競賽)."
+  },
+  {
+    date: "2021/11",
+    zh: "恭喜蕭瑾涵同學榮獲2021材料年會最佳海報獎。",
+    en: "Congratulations that Master student Jien-Han Siew has been awarded as the Best Poster Award of MRSTIC(材料年會) 2021."
+  }
+];
+---
+
+<Layout
+  title="Awards – TYLin Lab"
+  description="Honors and awards received by members of TYLin Lab at National Tsing Hua University."
+  keywords="awards, honors, TYLin Lab, NTHU, research"
+>
+  <div class="site-container mx-auto px-4 mt-8 mb-16 max-w-4xl">
+    <div class="mb-12 pb-4 border-b border-neutral-200 dark:border-neutral-800">
+      <h1 class="text-3xl font-brand tracking-tight sm:text-4xl text-neutral-900 dark:text-neutral-100 mb-4">
+        Honors & Awards
+      </h1>
+      <p class="text-lg text-neutral-600 dark:text-neutral-400">
+        Celebrating the achievements and recognition of our lab members.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      {awardsItems.map((item, index) => (
+        <div class="flex flex-col p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 hover:bg-neutral-50 dark:hover:bg-neutral-800/60 transition-colors shadow-sm">
+          <div class="mb-2">
+            <span class="text-sm font-medium text-pri-dark dark:text-pri">{item.date}</span>
+          </div>
+          <div class="flex-1 flex flex-col justify-center">
+            <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2 leading-snug">
+              {item.zh.replace("恭喜", "").replace("。", "")}
+            </h2>
+            <p class="text-neutral-600 dark:text-neutral-400 italic text-sm">
+              {item.en.replace("Congratulations that ", "")}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

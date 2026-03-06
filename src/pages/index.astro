@@ -1,132 +1,169 @@
 ---
 import Button from "../components/ui/Button.astro";
 import { siteConfig } from "@/config/site";
-import HeroCard from "@/components/home/HeroCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import FeaturedWork from "../components/sections/FeaturedWork.astro";
-import BlogSection from "@/components/sections/BlogSection.astro";
-import SocialCard from "@/components/cards/SocialCard.astro";
 import AnimatedText from "@/components/ui/AnimatedText.astro";
-import Explore from "@/components/sections/Explore.astro";
+import HeroCarousel from "@/components/home/HeroCarousel.astro";
+import { getCollection } from 'astro:content';
+
+// 取得所有 news 並依據 date 排序 (新 -> 舊)
+const allNews = await getCollection('news');
+const sortedNews = allNews.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+}).slice(0, 4); // 首頁只取最新 4 筆
 ---
 
 <Layout
-title="Rico Portfolio Site 2025"
-description="Welcome to Rico's portfolio site! Explore my work as a web/UI designer with 8+ years of experience in creating captivating visuals and interactive experiences."
-keywords="Rico, Portfolio, Web Design, UI Design, Frontend Development, Creative Designer"
+  title="TYLin Lab – Energy Materials & Thin-Film Photovoltaics"
+  description="TYLin Lab at National Tsing Hua University – Research on sustainable energy storage materials, CIGS thin-film solar cells, and advanced electrolyte systems."
+  keywords="TYLin Lab, CIGS, solar cells, lithium-ion battery, solid-state electrolyte, NTHU, 林姿瑩"
 >
-  <div
-    class="relative site-container z-20  w-full mx-auto mt-16 px-4 md:mt-18 lg:mt-20 xl:px-0"
-  >
-    <div class="relative w-full px-4 flex flex-col items-center justify-between md:flex-row mb-16 ">
-      <div class="relative w-full md:max-w-[420px] md:w-1/2 text-center sm:text-left sm:-mt-8">
-        <!-- Title - AnimatedText animation -->
-        <h1 class="mb-4">
-          <AnimatedText
-            content="Hi, I'm Rico"
-            delay={0.1}
-            duration={0.5}
-            stagger={0.08}
-            class="text-5xl text-pri leading-tight md:text-4xl lg:text-6xl font-brand "
-          />
-        </h1>
-
-        <!-- First description - AnimatedText animation -->
-        <div class="mb-2">
-          <AnimatedText
-            content="I'm a web/UI designer with 8+ years of experience. I love blending design and code to create captivating visuals and interactive experiences."
-            delay={0.3}
-            duration={0.5}
-            stagger={0.015}
-            class="text-base text-neutral-700 dark:text-neutral-300"
-          />
+  <div class="relative site-container z-20 w-full mx-auto mt-4 px-4 md:mt-8 lg:mt-10 xl:px-0">
+    <!-- Hero Section -->
+    <div class="relative w-full px-2 md:px-4 flex flex-col items-center justify-center mb-16 text-center">
+      <div class="relative w-full max-w-7xl flex justify-center">
+        <div class="w-full lg:w-[90%]">
+          <HeroCarousel />
         </div>
-
-        <!-- Second description - AnimatedText animation -->
-        <div class="mb-4">
-          <AnimatedText
-            content="I believe great design should be both delightful and solve real-world challenges."
-            delay={0.5}
-            duration={0.5}
-            stagger={0.015}
-            class="text-base text-neutral-700 dark:text-neutral-300"
-          />
-        </div>
-
-        <!-- Button - AOS animation -->
-        <div
-          class=""
-          data-aos="fade-up-sm"
-          data-aos-delay="900"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          <Button url={siteConfig.social.twitter} type="fill" className="m-auto mt-4 text-center sm:text-left sm:m-0 sm:mt-6 max-w-[200px]">
-            Follow me on 𝕏
-          </Button>
-        </div>
-
-        <!-- Social Cards - AOS animation -->
-        <div
-          class="social mt-8 mb-8"
-          data-aos="fade-up-sm"
-          data-aos-delay="1000"
-          data-aos-duration="600"
-          data-aos-once="true"
-        >
-          <SocialCard displaySocialIds={[1, 2, 3,4]}/>
-        </div>
-      </div>
-
-      <!-- HeroCard - AOS animation -->
-      <div
-        class="relative justify-end w-full mt-16 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
-        data-aos="fade-left-sm"
-        data-aos-delay="300"
-        data-aos-duration="800"
-        data-aos-once="true"
-      >
-        <HeroCard
-          imageUrl="/assets/home/gradientshub.jpg"
-          title="Gradientshub"
-          link="https://gradientshub.com"
-        />
       </div>
     </div>
   </div>
 
+  <!-- News Section -->
   <section
-    class="mt-26 mb-12"
+    class="site-container mx-auto px-4 mt-8 mb-16"
+    data-aos="fade-up-sm"
+    data-aos-delay="50"
+    data-aos-duration="600"
+    data-aos-once="true"
+  >
+    <div class="flex items-center justify-between mb-8 pb-4 border-b border-neutral-200 dark:border-neutral-800">
+      <h2 class="text-2xl font-brand tracking-tight sm:text-3xl flex items-center gap-2">
+        <span class="text-pri">Latest News</span>
+      </h2>
+      <a href="/news" class="text-sm font-medium text-neutral-500 hover:text-pri transition-colors">See all news &rarr;</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+      {sortedNews.map((newsItem) => (
+        <a href={`/news/${newsItem.id}`} class="flex flex-col p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/40 dark:bg-neutral-900/40 hover:bg-neutral-50 dark:hover:bg-neutral-800/60 transition-colors shadow-sm">
+          <div class="mb-2">
+            <span class="text-sm font-medium text-pri-dark dark:text-pri">{newsItem.data.date}</span>
+          </div>
+          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-2 leading-snug">
+            {newsItem.data.title}
+          </h3>
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm line-clamp-2">
+            {newsItem.data.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Research Highlights -->
+  <section
+    class="site-container mx-auto px-4 mt-20 mb-12"
     data-aos="fade-up-sm"
     data-aos-delay="100"
     data-aos-duration="600"
     data-aos-once="true"
   >
-    <Explore title="Explore ↓"  />
+    <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 text-center">Research Areas</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Battery Research -->
+      <a href="/research#battery" class="group block p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 text-xl">⚡</div>
+          <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200">Sustainable Energy Storage</h3>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+          Developing sustainable energy storage materials and technologies—from waste-derived anodes and high-performance cathodes to solid-state and composite electrolyte systems for next-generation Li/Na-ion batteries.
+        </p>
+      </a>
+
+      <!-- Solar Research -->
+      <a href="/research#solar" class="group block p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 text-xl">☀️</div>
+          <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-200">Thin-Film Compound Photovoltaics</h3>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+          CIGS solar cells with chalcopyrite structure for lightweight, flexible, and radiation-tolerant photovoltaic applications—including alkali metal treatments, space radiation stability, and photoelectrode development.
+        </p>
+      </a>
+    </div>
   </section>
 
+  <!-- Partners Marquee / Quick Links replacement -->
   <section
-    class="mt-26 mb-12"
+    class="site-container mx-auto mt-16 mb-20 overflow-hidden relative w-full"
     data-aos="fade-up-sm"
     data-aos-delay="100"
     data-aos-duration="600"
     data-aos-once="true"
   >
-    <FeaturedWork title="Featured Work ↓" description="I create innovative and purposeful designs that not only capture attention but also drive meaningful results." limit={5} />
-  </section>
+    <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-500 dark:from-neutral-200 dark:to-neutral-500">
+      合作夥伴<br/><span class="text-lg font-normal">Collaborators</span>
+    </h2>
+    
+    <!-- Marquee Container -->
+    <div class="relative flex overflow-hidden group">
+      <!-- Gradient Masks for smooth fade out at edges -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-[#F6F5F2] dark:from-[#1A1A1A] to-transparent z-10"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-[#F6F5F2] dark:from-[#1A1A1A] to-transparent z-10"></div>
+      
+      <!-- Track 1 -->
+      <div class="flex flex-nowrap animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused] items-center shrink-0 w-max">
+        <!-- 合作夥伴 1 -->
+        <a href="https://www.itri.org.tw/index.aspx" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-1.png" alt="Collaborator 1" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+        
+        <!-- 合作夥伴 2 -->
+        <a href="https://www.nsrrc.org.tw/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-2.png" alt="Collaborator 2" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
 
-  <section
-    class="mt-26 mb-12"
-    data-aos="fade-up-sm"
-    data-aos-delay="100"
-    data-aos-duration="600"
-    data-aos-once="true"
-  >
-    <BlogSection
-      title="Latest Articles  ↓"
-      description="These are my notes and articles on design, development and life thinking."
-      showViewAllButton={true}
-    />
-  </section>
+        <!-- 合作夥伴 3 -->
+        <a href="https://www.um.edu.my/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-3.png" alt="Collaborator 3" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
 
+        <!-- 合作夥伴 4 -->
+        <a href="https://www.tus.ac.jp/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-4.png" alt="Collaborator 4" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+
+        <!-- 合作夥伴 5 -->
+        <a href="https://www.empa.ch/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-5.png" alt="Collaborator 5" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+      </div>
+
+      <!-- Track 2 (Duplicate for seamless loop) -->
+      <div class="flex flex-nowrap animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused] items-center shrink-0 w-max" aria-hidden="true">
+        <!-- 將上面的圖片再一次複製，才能無縫接軌 -->
+        <a href="https://www.itri.org.tw/index.aspx" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-1.png" alt="Collaborator 1" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+        
+        <a href="https://www.nsrrc.org.tw/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-2.png" alt="Collaborator 2" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+
+        <a href="https://www.um.edu.my/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-3.png" alt="Collaborator 3" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+
+        <a href="https://www.tus.ac.jp/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-4.png" alt="Collaborator 4" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+
+        <a href="https://www.empa.ch/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+          <img src="/assets/home/partner-5.png" alt="Collaborator 5" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>

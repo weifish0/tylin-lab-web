@@ -1,18 +1,34 @@
 [
-	{
-		"name": "Home",
-		"url": "/"
-	},
-	{
-		"name": "Writing",
-		"url": "/blog"
-	},
-	{
-		"name": "Works",
-		"url": "/works"
-	},
-	{
-		"name": "About",
-		"url": "/about"
-	}
+        {
+                "name": "Home",
+                "url": "/"
+        },
+        {
+                "name": "News",
+                "url": "/news"
+        },
+        {
+                "name": "Research",
+                "url": "/research"
+        },
+        {
+                "name": "Publications",
+                "url": "/publications"
+        },
+        {
+                "name": "Awards",
+                "url": "/awards"
+        },
+        {
+                "name": "Members",
+                "url": "/members"
+        },
+        {
+                "name": "Innovation Hub",
+                "url": "/innovation-hub"
+        },
+        {
+                "name": "About",
+                "url": "/about"
+        }
 ]

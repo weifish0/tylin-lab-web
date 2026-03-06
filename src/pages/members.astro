@@ -1,0 +1,116 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Toc from "@/components/widgets/Toc.astro";
+
+const headings = [
+  { depth: 2, slug: "professor", text: "Professor" },
+  { depth: 2, slug: "postdoc", text: "Postdoctoral Researchers" },
+  { depth: 2, slug: "students", text: "Graduate Students" },
+  { depth: 2, slug: "undergraduate", text: "Undergraduate Researchers" },
+  { depth: 2, slug: "alumni", text: "Alumni" },
+];
+
+const filtered = headings.filter(h => h.depth <= 3);
+---
+
+<Layout
+  title="Members – TYLin Lab"
+  description="Meet the team of TYLin Lab at National Tsing Hua University."
+  keywords="lab members, TYLin Lab, NTHU, team"
+>
+  <!-- Mobile TOC -->
+  <div class="block lg:hidden px-7 pt-6">
+    <Toc headings={filtered} />
+  </div>
+
+  <div class="relative site-container mx-auto my-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <!-- Left TOC -->
+      <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
+        <div class="w-full" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h1 class="text-3xl font-brand tracking-tight sm:text-4xl lg:text-5xl mb-4">Members</h1>
+          <p class="text-neutral-600 dark:text-neutral-400 mb-12 text-lg">
+            Our research family at TYLin Lab.
+          </p>
+        </div>
+
+        <!-- Professor -->
+        <section id="professor" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Professor
+          </h2>
+          <div class="flex flex-col md:flex-row gap-8 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+            <div class="w-40 h-48 md:w-48 md:h-56 rounded-xl bg-neutral-200 dark:bg-neutral-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-700">
+              <img 
+                src="/assets/members/prof-lin.jpg" 
+                alt="Prof. Tzu-Ying Lin" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- 當圖片未放上時顯示的佔位符可以留著，如果有照片了這裡會自然被隱藏 -->
+              <div class="hidden text-4xl">👩‍🔬</div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-200">林姿瑩 Prof. Tzu-Ying Lin</h3>
+              <p class="text-neutral-500 dark:text-neutral-400 mt-1">Associate Professor</p>
+              <p class="text-neutral-500 dark:text-neutral-400">Department of Materials Science and Engineering</p>
+              <p class="text-neutral-500 dark:text-neutral-400">National Tsing Hua University (NTHU)</p>
+              <div class="mt-4 space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
+                <p>📧 Email: tzuying.lin@mx.nthu.edu.tw</p>
+                <p>📍 Office: 材料科學館 (Materials Science Building)</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Postdoc -->
+        <section id="postdoc" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Postdoctoral Researchers
+          </h2>
+          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+            <p class="text-sm">Information coming soon / 資料準備中</p>
+          </div>
+        </section>
+
+        <!-- Graduate Students -->
+        <section id="students" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Graduate Students
+          </h2>
+          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+            <p class="text-sm">Information coming soon / 資料準備中</p>
+          </div>
+        </section>
+
+        <!-- Undergraduate Researchers -->
+        <section id="undergraduate" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Undergraduate Researchers (專題生)
+          </h2>
+          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+            <p class="text-sm">Information coming soon / 資料準備中</p>
+          </div>
+        </section>
+
+        <!-- Alumni -->
+        <section id="alumni" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Alumni
+          </h2>
+          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+            <p class="text-sm">Information coming soon / 資料準備中</p>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</Layout>

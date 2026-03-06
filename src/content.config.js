@@ -21,6 +21,16 @@ const post = defineCollection({
 	}),
 });
 
+const news = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/news' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		date: z.string(), // e.g. "2025/08"
+		category: z.string(), // e.g. "Award", "Honor", "News"
+	}),
+});
+
 // 4. 导出一个 `collections` 对象来注册你的集合
-export const collections = { post };
+export const collections = { post, news };
 

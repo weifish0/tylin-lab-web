@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('news');
+  return newsEntries.map(entry => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+// 2. For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout
+  title={`${entry.data.title} – TYLin Lab`}
+  description={entry.data.description}
+  keywords={`${entry.data.category}, news, TYLin Lab`}
+>
+  <article class="site-container mx-auto px-4 mt-8 mb-16 max-w-3xl">
+    <div class="mb-10 pb-6 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+          {entry.data.date}
+        </span>
+        <span class={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider ${
+          entry.data.category.toLowerCase() === 'honor' 
+            ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
+            : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+        }`}>
+          {entry.data.category}
+        </span>
+      </div>
+
+      <h1 class="text-3xl font-brand tracking-tight sm:text-4xl text-neutral-900 dark:text-neutral-100 mb-4 leading-tight">
+        {entry.data.title}
+      </h1>
+      
+      <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed italic">
+        {entry.data.description}
+      </p>
+    </div>
+
+    <div class="prose prose-neutral dark:prose-invert max-w-none prose-img:rounded-xl prose-a:text-pri hover:prose-a:text-pri-dark">
+      <Content />
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800 flex justify-center">
+      <a 
+        href="/news" 
+        class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-pri bg-pri/10 hover:bg-pri hover:text-white transition-colors shadow-sm"
+      >
+        &larr; Back to News
+      </a>
+    </div>
+  </article>
+</Layout>

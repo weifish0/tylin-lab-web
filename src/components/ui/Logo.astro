@@ -1,7 +1,17 @@
+---
+import { Image } from "astro:assets";
+import logoImage from "/public/logo.png"; 
+---
+
 <a
   href="/"
-  class="h-10 text-base group relative z-30 flex items-center aspect-square"
+  class="h-10 text-base group relative z-30 flex items-center gap-2"
 >
-  <img src="/assets/logo.png" alt="Logo" class="w-10 h-10 rounded-full" />
+  <Image 
+    src={logoImage} 
+    alt="TYLin Lab Logo" 
+    class="h-18 w-auto object-contain" 
+    loading="eager" 
+  />
 </a>
 

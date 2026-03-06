@@ -29,22 +29,22 @@
   --color-neutral-900: #19222f;
   --color-neutral-950: #10161f;
 
-  --color-primary: #2d6dc3;
-  --color-primary-rgb: 45, 109, 195;
-  --color-primary-strong: #0066ff;
-  --color-primary-dark: #2d6dc3;
-  --color-primary-light: #8fb9ff;
-  --color-primary-light-dark: #bcd8ff;
-  --color-primary-lighter: #6da7ff;
+  --color-primary: #83AE7D;
+  --color-primary-rgb: 131, 174, 125;
+  --color-primary-strong: #6b9e65;
+  --color-primary-dark: #5e8d58;
+  --color-primary-light: #a6cfa1;
+  --color-primary-light-dark: #c3e3be;
+  --color-primary-lighter: #d3ead0;
   /* Article-specific variables */
   --color-primary-bg: var(--color-bg-primary-light);
   --color-primary-bg-light: var(--color-bg-secondary);
 
 
-  --color-btn-primary: #2d6dc3;
-  --color-btn-primary-hover: #0066ff;
-  --color-btn-primary-dark: #2871e9;
-  --color-btn-primary-dark-hover: #2d6dc3;
+  --color-btn-primary: #83AE7D;
+  --color-btn-primary-hover: #6b9e65;
+  --color-btn-primary-dark: #5e8d58;
+  --color-btn-primary-dark-hover: #83AE7D;
 
   /* Accent colors */
   --color-accent: #fad13b;
@@ -62,22 +62,22 @@
 
 
   /* Text colors */
-  --color-text-primary: #2d6dc3;
+  --color-text-primary: #83AE7D;
   --color-text-secondary: #3f4a5a;
   --color-text-tertiary: #7a6550;
 
-  --color-text-primary-dark: #3884eb;
+  --color-text-primary-dark: #9bc795;
   --color-text-secondary-dark: #c5cedb;
   --color-text-tertiary-dark: #9bb3d7;
 }
 
 /* Dark mode variable overrides */
 html.dark {
-  --color-primary-rgb: 56, 132, 235;
-  --color-primary-light-dark: #3884eb;
-  --color-primary-lighter: #8fb9ff;
-  --color-primary-bg: rgba(56, 132, 235, 0.15);
-  --color-primary-bg-light: rgba(56, 132, 235, 0.05);
+  --color-primary-rgb: 155, 199, 149;
+  --color-primary-light-dark: #9bc795;
+  --color-primary-lighter: #a6cfa1;
+  --color-primary-bg: rgba(155, 199, 149, 0.15);
+  --color-primary-bg-light: rgba(155, 199, 149, 0.05);
 }
 
 /* Add typography styles */

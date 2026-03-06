@@ -1,0 +1,173 @@
+---
+const images = [
+  // 這裡放入你想展示的圖片路徑 (請替換為實際的路徑)
+  "/assets/home/style-poster.png",
+  "/assets/home/ChemComm_2025_01.jpg",
+  "/assets/home/hero-3.png",
+];
+---
+
+<div class="relative w-full overflow-hidden rounded-2xl shadow-xl carousel-container group" data-carousel>
+  <!-- Carousel Images -->
+  <div class="flex transition-transform duration-500 ease-in-out carousel-track w-full" style="transform: translateX(0%);">
+    {images.map((src, index) => (
+      <div class="w-full flex-none h-[400px] md:h-[500px] lg:h-[600px] relative bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+        <img 
+          src={src} 
+          alt={`Gallery image ${index + 1}`} 
+          class="w-full h-full object-cover"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <!-- 圖片載入失敗時的佔位符 (可以移除) -->
+        <div class="hidden text-neutral-500">
+          Carousel Image {index + 1}
+        </div>
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/70 dark:bg-black/50 text-neutral-800 dark:text-neutral-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity carousel-prev backdrop-blur-sm shadow-sm" aria-label="Previous image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/70 dark:bg-black/50 text-neutral-800 dark:text-neutral-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity carousel-next backdrop-blur-sm shadow-sm" aria-label="Next image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 carousel-dots z-10">
+    {images.map((_, index) => (
+      <button class={`w-2.5 h-2.5 rounded-full transition-all shadow-sm ${index === 0 ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/80'}`} data-index={index} aria-label={`Go to image ${index + 1}`}></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  function setupCarousels() {
+    const carousels = document.querySelectorAll('[data-carousel]');
+    
+    carousels.forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track') as HTMLElement;
+      // Change 'flex-shrink-0' to 'flex-none' since we updated the class previously
+      const slides = carousel.querySelectorAll('.flex-none');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dots = carousel.querySelectorAll('.carousel-dots button');
+      
+      let currentIndex = 0;
+      const count = slides.length;
+      let interval: ReturnType<typeof setInterval>;
+      
+      // Touch attributes
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+      
+      function updateCarousel() {
+        if (!track) return;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.remove('bg-white/50', 'hover:bg-white/80');
+            dot.classList.add('bg-white', 'scale-125');
+          } else {
+            dot.classList.remove('bg-white', 'scale-125');
+            dot.classList.add('bg-white/50', 'hover:bg-white/80');
+          }
+        });
+      }
+      
+      function next() {
+        currentIndex = (currentIndex + 1) % count;
+        updateCarousel();
+      }
+      
+      function prev() {
+        currentIndex = (currentIndex - 1 + count) % count;
+        updateCarousel();
+      }
+      
+      function startAutoPlay() {
+        stopAutoPlay();
+        interval = setInterval(next, 4000); // 4 seconds
+      }
+      
+      function stopAutoPlay() {
+        if (interval) clearInterval(interval);
+      }
+      
+      // Event Listeners for Nav
+      nextBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        next();
+        startAutoPlay(); // Reset timer
+      });
+      
+      prevBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        prev();
+        startAutoPlay(); // Reset timer
+      });
+      
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentIndex = index;
+          updateCarousel();
+          startAutoPlay();
+        });
+      });
+      
+      // Pause on hover
+      carousel.addEventListener('mouseenter', stopAutoPlay);
+      carousel.addEventListener('mouseleave', startAutoPlay);
+      
+      // Touch Events (Swipe)
+      track?.addEventListener('touchstart', (e) => {
+        const touchEvent = e as TouchEvent;
+        startX = touchEvent.touches[0].clientX;
+        isDragging = true;
+        stopAutoPlay();
+      }, { passive: true });
+      
+      track?.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touchEvent = e as TouchEvent;
+        currentX = touchEvent.touches[0].clientX;
+      }, { passive: true });
+      
+      track?.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diffX = startX - currentX;
+        
+        // threshold 50px
+        if (Math.abs(diffX) > 50 && currentX !== 0) {
+          if (diffX > 0) {
+            next();
+          } else {
+            prev();
+          }
+        }
+        
+        // Reset
+        currentX = 0;
+        startAutoPlay();
+      });
+      
+      // Initialize Auto Play
+      if (count > 0) {
+        startAutoPlay();
+      }
+    });
+  }
+
+  // Setup on initial load
+  setupCarousels();
+  
+  // Re-run setup if utilizing View Transitions (Astro specific)
+  document.addEventListener('astro:page-load', setupCarousels);
+</script>

@@ -1,357 +1,178 @@
 ---
-import {
-	ArrowUpRight,
-	Code,
-	Globe,
-	Mail,
-	Monitor,
-	Palette,
-	Smartphone,
-	Zap,
-} from "@lucide/astro";
-import { siteConfig } from "@/config/site.js";
-import experiences from "@/collections/experiences.json";
-import social from "@/collections/social.json";
-import AboutExperience from "@/components/elements/AboutExperience.astro";
-import Button from "@/components/ui/Button.astro";
-import Matter from "@/components/ui/Matter.astro";
 import Layout from "@/layouts/Layout.astro";
 import Toc from "@/components/widgets/Toc.astro";
 
-// Manually define page table of contents structure
 const headings = [
-  { depth: 2, slug: "about-me", text: "About Me" },
-  { depth: 2, slug: "expertise", text: "Expertise" },
-  { depth: 2, slug: "tool-stack", text: "Tool Stack" },
-  { depth: 2, slug: "experience", text: "Experience" },
-  { depth: 2, slug: "lets-connect", text: "Let's Connect" },
+  { depth: 2, slug: "about-lab", text: "About the Lab" },
+  { depth: 2, slug: "professor", text: "Professor" },
+  { depth: 2, slug: "projects", text: "Projects & Collaborations" },
+  { depth: 2, slug: "awards", text: "Awards" },
+  { depth: 2, slug: "contact", text: "Contact" },
 ];
 
 const filtered = headings.filter(h => h.depth <= 3);
-
 ---
 
-<Layout title="About Me">
+<Layout title="About – TYLin Lab">
   <!-- Mobile TOC -->
   <div class="block lg:hidden px-7 pt-6">
     <Toc headings={filtered} />
   </div>
 
-  <!-- Main container -->
-  <div class="relative site-container  mx-auto my-8">
+  <div class="relative site-container mx-auto my-8">
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
-      <!-- Left TOC - Fixed on desktop -->
-      <aside class="relative hidden lg:block lg:w-40 xl:w-50 flex-shrink-0">
-          <div class="toc-sticky-wrapper">
-            <Toc headings={filtered} />
-          </div>
+      <!-- Left TOC -->
+      <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
       </aside>
 
-      <!-- Right main content - Adaptive width -->
+      <!-- Main Content -->
       <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
-        <div
-          class="w-full"
-          data-aos="fade-up-xs"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-            <h2
-              id="about-me"
-              class="text-2xl font-brand tracking-tight  sm:text-3xl lg:text-4xl"
-            >
-             About Me
-            </h2>
-            <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-      </div>
 
-        <div
-          class="flex items-center gap-3 mb-6"
-          data-aos="fade-up-xs"
-          data-aos-delay="100"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-            <img src="/assets/avatar.png" alt="Ricoui" class="w-14 h-14 rounded-full">
-            <div class="flex items-center gap-3">
-              <a href="https://www.ricoui.com/" target="_blank" class="font-brand text-[24px] text-neutral-700 dark:text-neutral-100">Rico</a>
-              <span class="text-[0.75em] text-neutral-400">|</span>
-              <a href="https://x.com/ricouii" class="flex items-center gap-1 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 text-sm" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4.5 h-4.5 fill-current">
-                  <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                </svg>
-                @ricouii
-              </a>
-            </div>
-        </div>
-
-        <p
-          class="text-3xl mt-2 mb-2  font-brand italic text-left text-primary-strong dark:text-primary-light"
-          data-aos="fade-up-xs"
-          data-aos-delay="200"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >"Beautiful design. Clean code. That's the goal."</p>
-        <!-- <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div> -->
-
-        <div
-          class="social"
-          data-aos="fade-up-xs"
-          data-aos-delay="300"
-          data-aos-duration="600"
-          data-aos-once="true"
-        >
-             <div class="social-list flex flex-wrap gap-2 items-center justify-start mt-6 mb-8">
-                {social
-                  .filter(item => item.isShow !== false)
-                  .map((item, index) => (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="social-item relative group overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[-6deg] hover:shadow-lg"
-                      data-aos="fade-up-xs"
-                      data-aos-delay={400 + (index * 50)}
-                      data-aos-duration="400"
-                      data-aos-once="true"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        class="w-[96px] h-[96px] rounded-xl object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div class="absolute bottom-[10px] left-[12px] z-10">
-                        <div class="social-name font-semibold text-[10px] text-white drop-shadow-md">
-                          {item.name}
-                        </div>
-                        <div class="social-username text-[9px] text-white/85 drop-shadow-sm">
-                          @{item.username}
-                        </div>
-                      </div>
-                      {/* Hover overlay */}
-                      {/* <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div> */}
-                    </a>
-                  ))
-                }
-             </div>
-        </div>
-
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-
-
-        <p
-          class="text-xl font-medium text-left text-neutral-800 dark:text-neutral-100"
-          data-aos="fade-up-xs"
-          data-aos-delay="100"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          I'm Rico, a Senior Web & Product Designer.
-        </p>
-        <p
-          class="text-neutral-700 pb-4 pt-4 leading-[1.8] dark:text-neutral-200"
-          data-aos="fade-up-xs"
-          data-aos-delay="200"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          With 8+ years of experience in UX/UI, I not only enjoy creative design and content creation, but coding is also one of my great interests. I often transform my rich and quirky ideas and creativity into design outcomes and tangible projects.
-
-        </p>
-        <p
-          class="text-neutral-700  leading-[1.8] dark:text-neutral-200"
-          data-aos="fade-up-xs"
-          data-aos-delay="300"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          Great design isn't just a pretty interface—it helps people reach their goals naturally, fuels sustainable growth, and keeps systems solid as you scale. I connect design and development, bringing strategy, usability, and execution together to turn visuals into real, measurable results.
-        </p>
-
-
-        <div
-          class="mt-8 mb-16 flex item-center justify-start gap-3"
-          data-aos="fade-up-xs"
-          data-aos-delay="400"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-              <Button url="mailto:hello@rico.com" > <Mail  size={16} />  hello@ricoui.com</Button>
-              <Button url={siteConfig.resume} type="fill"> Resume <ArrowUpRight  size={16} /> </Button>
-        </div>
-
-        <!-- <img src="/assets/about.jpg" class="relative z-30 w-full my-10 rounded-xl" /> -->
-
-        <div class="w-full border-b-1 border-dashed border-b-neutral-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-          <section>
-              <h2
-                id="expertise"
-                class="mt-8 mb-2 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
-                data-aos="fade-up-xs"
-                data-aos-duration="500"
-                data-aos-once="true"
-              >Expertise</h2>
-              <div
-                class="list flex flex-wrap gap-3 mt-4 mb-12 w-full items-center justify-start"
-                data-aos="fade-up-xs"
-                data-aos-delay="100"
-                data-aos-duration="600"
-                data-aos-once="true"
-              >
-                <!-- Product Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200 ">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Palette size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Product Design
-                    </div>
-                  </div>
-                </div>
-                <!-- Website Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Globe size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Website Design
-                    </div>
-                  </div>
-                </div>
-                <!-- Brand Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Zap size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Brand Design
-                    </div>
-                  </div>
-                </div>
-                <!-- Prototyping -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Monitor size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Prototyping
-                    </div>
-                  </div>
-                </div>
-                <!-- Development -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Code size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Development
-                    </div>
-                  </div>
-                </div>
-                <!-- UI/UX Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Smartphone size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      UI/UX Design
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </section>
-
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-
-        <section>
-          <h2
-            id="tool-stack"
-            class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
-            data-aos="fade-up-xs"
-            data-aos-duration="500"
-            data-aos-once="true"
-          >Tool Stack</h2>
-          <div
-            class="tool-stack-box relative bg-white border-accent/25 dark:bg-gray-900 rounded-xl overflow-hidden w-full h-[500px]"
-            data-aos="fade-up-sm"
-            data-aos-delay="100"
-            data-aos-duration="600"
-            data-aos-once="true"
-          >
-              <Matter />
-              <!-- Fallback content if Matter.js doesn't load -->
-              <div class="absolute inset-0 flex items-center justify-center text-white opacity-50">
-              </div>
+        <!-- About Lab -->
+        <section id="about-lab" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl lg:text-4xl mb-6">About TYLin Lab</h2>
+          <div class="prose dark:prose-invert max-w-none text-neutral-700 dark:text-neutral-300 leading-relaxed space-y-4">
+            <p>
+              TYLin Lab（林姿瑩實驗室）隸屬於國立清華大學材料科學工程學系，專注於能源材料與薄膜光伏技術的研發。實驗室的研究涵蓋兩大核心領域：<strong>永續能源儲存材料</strong>（鋰/鈉離子電池正負極材料、固態與複合電解質）與<strong>薄膜化合物光伏技術</strong>（CIGS太陽能電池、鹼金屬處理、太空輻射穩定性）。
+            </p>
+            <p>
+              TYLin Lab, part of the Department of Materials Science and Engineering at National Tsing Hua University, focuses on energy materials and thin-film photovoltaic technology. Our research spans two core areas: <strong>sustainable energy storage materials</strong> for Li/Na-ion batteries and <strong>thin-film compound photovoltaics</strong> (CIGS solar cells) for terrestrial and space applications.
+            </p>
           </div>
         </section>
 
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-12 mb-12"></div>
-      <section class="experience">
-        <h2
-          id="experience"
-          class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
-          data-aos="fade-up-xs"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          Experience
-        </h2>
-        <div
-          class="px-5 py-10"
-          data-aos="fade-up-xs"
-          data-aos-delay="100"
-          data-aos-duration="600"
-          data-aos-once="true"
-        >
-          {
-            experiences.map((experience, index) => {
-              return (
-                <div
-                  class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
-                  data-aos="fade-up-xs"
-                  data-aos-delay={200 + (index * 100)}
-                  data-aos-duration="500"
-                  data-aos-once="true"
-                >
-                  <AboutExperience
-                    dates={experience.dates}
-                    role={experience.role}
-                    company={experience.company}
-                    description={experience.description}
-                    logo={experience.logo}
-                  />
-                </div>
-              )
-            })
-          }
-        </div>
-      </section>
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-      <section>
-        <h2
-          id="lets-connect"
-          class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
-          data-aos="fade-up-xs"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >Let's Connect</h2>
-        <p
-          class="text-sm leading-6 text-neutral-700 dark:text-neutral-300"
-          data-aos="fade-up-xs"
-          data-aos-delay="100"
-          data-aos-duration="500"
-          data-aos-once="true"
-        >
-          If you want to stay up to date with my work be sure to <a
-            href={siteConfig.social.twitter}
-            target="_blank"
-            class="text-indigo-500 underline">follow me on twitter</a
-          >, or you can send me an <a href="mailto:hello@ricoui.com" class=" underline"
-            >email</a
-          > and I'll be sure to get back to you.
-        </p>
-      </section>
+        <!-- Professor -->
+        <section id="professor" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">Professor</h2>
+          <div class="flex flex-col md:flex-row gap-8 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+            <div class="w-40 h-48 md:w-48 md:h-56 rounded-xl bg-neutral-200 dark:bg-neutral-800 flex-shrink-0 flex items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-700">
+              <img 
+                src="/assets/members/prof-lin.jpg" 
+                alt="Prof. Tzu-Ying Lin" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="hidden text-5xl">👩‍🔬</div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-200">林姿瑩 Prof. Tzu-Ying Lin</h3>
+              <p class="text-neutral-500 dark:text-neutral-400 mt-1">Associate Professor</p>
+              <p class="text-neutral-500 dark:text-neutral-400">Department of Materials Science and Engineering</p>
+              <p class="text-neutral-500 dark:text-neutral-400 mb-4">National Tsing Hua University (NTHU)</p>
+              <div class="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
+                <p>📧 tzuying.lin@mx.nthu.edu.tw</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects & Collaborations -->
+        <section id="projects" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">Projects & Collaborations</h2>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold mb-4 text-neutral-800 dark:text-neutral-200">產學合作 Industry-Academia Collaboration</h3>
+            <!-- Marquee Container -->
+            <div class="relative flex overflow-hidden group py-6">
+              <!-- Gradient Masks for smooth fade out at edges -->
+              <div class="pointer-events-none absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-[#F6F5F2] dark:from-[#1A1A1A] to-transparent z-10"></div>
+              <div class="pointer-events-none absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-[#F6F5F2] dark:from-[#1A1A1A] to-transparent z-10"></div>
+              
+              <!-- Track 1 -->
+              <div class="flex flex-nowrap animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused] items-center shrink-0 w-max">
+                <!-- 合作夥伴 1 -->
+                <a href="https://www.itri.org.tw/index.aspx" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-1.png" alt="Collaborator 1" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+                
+                <!-- 合作夥伴 2 -->
+                <a href="https://www.nsrrc.org.tw/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-2.png" alt="Collaborator 2" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <!-- 合作夥伴 3 -->
+                <a href="https://www.um.edu.my/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-3.png" alt="Collaborator 3" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <!-- 合作夥伴 4 -->
+                <a href="https://www.tus.ac.jp/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-4.png" alt="Collaborator 4" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <!-- 合作夥伴 5 -->
+                <a href="https://www.empa.ch/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-5.png" alt="Collaborator 5" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+              </div>
+
+              <!-- Track 2 (Duplicate for seamless loop) -->
+              <div class="flex flex-nowrap animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused] items-center shrink-0 w-max" aria-hidden="true">
+                <!-- 將上面的圖片再一次複製，才能無縫接軌 -->
+                <a href="https://www.itri.org.tw/index.aspx" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-1.png" alt="Collaborator 1" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+                
+                <a href="https://www.nsrrc.org.tw/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-2.png" alt="Collaborator 2" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <a href="https://www.um.edu.my/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-3.png" alt="Collaborator 3" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <a href="https://www.tus.ac.jp/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-4.png" alt="Collaborator 4" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+
+                <a href="https://www.empa.ch/" target="_blank" rel="noopener noreferrer" class="mx-6 md:mx-10 shrink-0 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 flex items-center justify-center">
+                  <img src="/assets/home/partner-5.png" alt="Collaborator 5" class="h-12 md:h-16 w-auto object-contain max-w-none" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Awards -->
+        <section id="awards" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">Awards</h2>
+          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+            <p class="text-sm">Information coming soon / 資料準備中</p>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">Contact</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h3 class="font-semibold text-lg mb-4 text-neutral-800 dark:text-neutral-200">📍 Lab Location</h3>
+              <div class="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <p><strong>材料科學館 / 材料實驗館</strong></p>
+                <p>Department of Materials Science and Engineering</p>
+                <p>National Tsing Hua University</p>
+                <p>101, Section 2, Kuang-Fu Road</p>
+                <p>Hsinchu 300044, Taiwan</p>
+              </div>
+            </div>
+            <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h3 class="font-semibold text-lg mb-4 text-neutral-800 dark:text-neutral-200">📬 Get in Touch</h3>
+              <div class="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+                <p>
+                  <span class="font-medium">Prof. Tzu-Ying Lin</span>
+                </p>
+                <p>📧 Email: <a href="mailto:tzuying.lin@mx.nthu.edu.tw" class="text-blue-600 dark:text-blue-400 hover:underline">tzuying.lin@mx.nthu.edu.tw</a></p>
+                <p>☎️ Extension: TBD</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </div>
   </div>
 </Layout>
-
-<style>
-.toc-sticky-wrapper {
-  position: sticky;
-  top: 8rem;
-}
-</style>
