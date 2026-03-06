@@ -1,7 +1,10 @@
 ---
 import Logo from "@/components/ui/Logo.astro";
 import ToTop from "@/components/widgets/ToTop.astro";
-import { siteConfig } from "@/config/site.js";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -10,24 +13,32 @@ import { siteConfig } from "@/config/site.js";
   <div
     class="container flex flex-col items-center py-8 mx-auto px-7 max-w-7xl sm:flex-row"
   >
-    <div class="flex flex-col items-center sm:items-start gap-3">
+    <div class="flex flex-col items-center sm:items-start gap-5">
       <div class="flex items-center gap-3">
         <Logo />
         <p
           class="text-sm text-neutral-700 dark:text-neutral-100 sm:ml-4 sm:pl-4 sm:border-l sm:border-neutral-300 dark:sm:border-neutral-700"
         >
-          © {new Date().getFullYear()} TYLin Lab, Dept. of MSE, National Tsing Hua University
+          © {new Date().getFullYear()} TYLin Lab, {t('footer.dept')}, {t('footer.univ')}
         </p>
       </div>
-      <div class="text-xs text-neutral-500 dark:text-neutral-400 sm:ml-4 flex flex-col sm:flex-row items-center sm:gap-4 mt-2 sm:mt-0">
-        <span class="flex items-center gap-1.5 mb-1 sm:mb-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-           學生辦公室：材料實驗館 102室
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-           分機號碼：#35343
-        </span>
+      <div class="text-xs text-neutral-500 dark:text-neutral-400 sm:ml-[18px] flex flex-col gap-1.5 mt-3 sm:mt-0">
+        <div class="flex items-start gap-3 flex-col sm:flex-row sm:items-center">
+          <span class="flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            {t('footer.teacherOffice')}：{t('footer.buildingD')} 413{t('footer.room')} ({t('footer.ext')}: 35341)
+          </span>
+        </div>
+        <div class="flex items-start flex-col gap-1.5 sm:gap-2 sm:flex-row sm:items-center">
+          <span class="flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            {t('footer.studentOffice')}：1. {t('footer.buildingMSE')} 102{t('footer.room')} (#35343)
+          </span>
+          <span class="hidden sm:inline-block text-neutral-300 dark:text-neutral-700">|</span>
+          <span class="flex items-center gap-1.5 sm:ml-0 ml-5">
+            2. {t('footer.buildingEng3')} 221{t('footer.room')} (#35367)
+          </span>
+        </div>
       </div>
     </div>
     

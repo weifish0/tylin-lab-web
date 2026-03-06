@@ -19,7 +19,6 @@ const {
   image,
   tags = [],
   video,
-  isShow = true,
   layout = 'grid',
   index = 0,
   target = "_blank"
@@ -165,7 +164,7 @@ const videoId = `workcard-video-${index}-${name.replace(/[^a-z0-9]+/gi, '-').toL
 </article>
 
 {video && (
-  <script define:vars={{ videoId }}>
+  <script is:inline define:vars={{ videoId }}>
     // Use IIFE to avoid global pollution and ensure each video is managed independently
     (function() {
       'use strict';

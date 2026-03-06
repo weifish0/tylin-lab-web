@@ -1,0 +1,215 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Toc from "@/components/widgets/Toc.astro";
+
+const headings = [
+  { depth: 2, slug: "solar-process", text: "CIGS Process Capabilities" },
+  { depth: 3, slug: "three-stage-coevaporation", text: "Three-Stage Co-Evaporation" },
+  { depth: 3, slug: "cbd-system", text: "Chemical Bath Deposition" },
+  { depth: 3, slug: "rf-sputtering", text: "RF Sputtering" },
+  { depth: 2, slug: "battery-process", text: "Battery Process Capabilities" },
+  { depth: 2, slug: "solar-characterization", text: "Solar Cell Characterization" },
+  { depth: 2, slug: "battery-characterization", text: "Electrochemical Analysis" },
+];
+
+const filtered = headings.filter(h => h.depth <= 3);
+---
+
+<Layout
+  title="Innovation Hub – TYLin Lab"
+  description="Research capabilities and experimental facilities of TYLin Lab – CIGS solar cell fabrication, battery materials processing, and advanced characterization."
+  keywords="research facilities, CIGS fabrication, battery characterization, MBE, sputtering, EIS, PL, TRPL"
+>
+  <!-- Mobile TOC -->
+  <div class="block lg:hidden px-7 pt-6">
+    <Toc headings={filtered} />
+  </div>
+
+  <div class="relative site-container mx-auto my-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <!-- Left TOC -->
+      <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
+        <div class="w-full" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h1 class="text-3xl font-brand tracking-tight sm:text-4xl lg:text-5xl mb-2">Innovation Hub</h1>
+          <p class="text-lg text-neutral-500 dark:text-neutral-400 mb-4">研究量能</p>
+          <p class="text-neutral-600 dark:text-neutral-400 mb-12">
+            Our lab is equipped with comprehensive fabrication and characterization capabilities for both CIGS solar cells and energy storage systems.
+          </p>
+        </div>
+
+        <!-- ===== CIGS SOLAR CELL PROCESS ===== -->
+        <section id="solar-process" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              CIGS Solar Cell – Key Process Capabilities
+            </h2>
+            <p class="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed mb-8">
+              本團隊具備完整的CIGS太陽能電池製程量能，包括吸收層的三階段共蒸鍍與後處理、緩衝層的化學水浴沉積，以及背電極與光窗層的射頻濺鍍系統，可控制薄膜組成品質與界面等特性，提供完整開發與改良元件的系統。
+            </p>
+          </div>
+
+          <!-- Three-Stage Co-Evaporation -->
+          <div id="three-stage-coevaporation" class="mb-10 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-5 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h3 class="text-lg font-semibold mb-3 text-amber-700 dark:text-amber-400">Three-Stage Co-Evaporation Process 三階段共蒸鍍製程</h3>
+              <div class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed space-y-3">
+                <p>本團隊具備分子束磊晶(Molecular Beam Epitaxy, MBE)設備，可進行CIGS太陽能電池中銅銦鎵硒吸收層的三階段共蒸鍍、合金後硒化與鹼金屬共蒸鍍後處理等製程。</p>
+                <p>三階段共蒸鍍能控制個別元素鍍率及蒸鍍溫度、時間等參數，可根據所需元件需求控制薄膜內成份梯度及成分等條件，以製備元件。</p>
+                <p>合金後硒化及鹼金屬共蒸鍍後處理同樣可透過分子束磊晶設備進行製程，在高溫下通入硒氣氛或鹼金屬化合物氣氛，可控制蒸鍍溫度、時間及退火溫度、時間等條件，以達到控制能隙及能帶結構、進行摻雜等優勢。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chemical Bath Deposition -->
+          <div id="cbd-system" class="mb-10 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-5 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h3 class="text-lg font-semibold mb-3 text-amber-700 dark:text-amber-400">Chemical Bath Deposition (CBD) 化學水浴沉積設備</h3>
+              <div class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed space-y-3">
+                <p>本團隊配備化學水浴沉積法(CBD)設備，用於CIGS太陽能電池CdS、Zn(O,S)等緩衝層薄膜的製備。該系統可控制溫度、溶液組成及沉積時間，以獲得均勻的緩衝層薄膜。</p>
+                <p>透過CBD製備的緩衝層可改善與吸收層的界面品質，並可透過鹼金屬摻雜等方法改變薄膜特性，進而改善CIGS元件的光電轉換性能。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RF Sputtering -->
+          <div id="rf-sputtering" class="mb-10 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-5 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h3 class="text-lg font-semibold mb-3 text-amber-700 dark:text-amber-400">RF Sputtering System 射頻濺鍍系統</h3>
+              <div class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed space-y-3">
+                <p>本團隊具備兩套獨立之射頻濺鍍系統，分別用於CIGS太陽能電池鉬(Mo)背電極與光窗層的製備。</p>
+                <p>鉬背電極濺鍍系統可透過調控濺鍍功率、工作壓力與膜厚，改善鉬薄膜之導電性、附著性，以形成具良好接觸特性且低接觸電阻的背電極結構。</p>
+                <p>光窗層濺鍍系統可濺鍍鋁摻雜氧化鋅(AZO)等光窗層材料，可透過控制濺鍍氣壓，使薄膜兼具高光穿透率與低電阻特性。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== BATTERY PROCESS ===== -->
+        <section id="battery-process" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              Battery Materials – Key Process Capabilities
+            </h2>
+            <div class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed space-y-4 mb-8">
+              <p>
+                本團隊已建立完整的電池材料製程與元件整合平台，透過高能量球磨系統、熱處理設備、薄膜沉積系統以及惰性氣氛手套箱等關鍵設備，提供從粉體工程到電池組裝的一站式製程能力。此整合式平台可依據不同應用需求，靈活調控材料結構與界面特性。
+              </p>
+              <p>
+                在電極材料工程方面，本團隊專注於高能量密度正負極材料之結構設計與界面穩定化技術。透過摻雜調控、表面改質及複合結構設計，可有效提升高鎳層狀正極材料與矽基複合負極之循環穩定性與倍率性能。此外，團隊亦開發永續生質來源硬碳材料，利用廢棄生物質轉化為高效能鋰/鈉電池負極，兼顧能源材料效能與資源循環利用。
+              </p>
+              <p>
+                在電解質技術方面，實驗室具備高分子與陶瓷複合固態電解質製備能力，並透過網路強化結構與多相界面設計提升材料機械強度、熱穩定性與離子傳遞效率。
+              </p>
+            </div>
+          </div>
+
+          <!-- Key Equipment Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">High-Energy Ball Milling</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">高能量球磨系統</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Heat Treatment Furnaces</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">熱處理設備</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Thin-Film Deposition</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">薄膜沉積系統</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Inert Atmosphere Glove Box</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">惰性氣氛手套箱</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SOLAR CELL CHARACTERIZATION ===== -->
+        <section id="solar-characterization" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              CIGS Solar Cell – Electrical Characterization
+            </h2>
+            <p class="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed mb-8">
+              本團隊具備完整之CIGS太陽能電池電性量測量能，涵蓋IV、CV、DLCP、EQE、Admittance、Suns-Voc、PL及TRPL等分析量測技術，可系統性量測吸收層摻雜與缺陷特性、光生載子收集效率，以及深能階對元件電性的影響。
+            </p>
+          </div>
+
+          <div class="space-y-4" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">Current–Voltage (I–V) Measurement 電流-電壓量測</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">採用Keithley 4200半導體參數分析系統，搭配WACOM AM1.5太陽光源模擬器（100 mW/cm²），量測Voc、Jsc、FF及串聯與並聯電阻等電性指標。</p>
+            </div>
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">Capacitance–Voltage (C-V) & DLCP 電容-電壓量測</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">使用Keithley 4200系統在暗室下量測，施加10 kHz與100 kHz交流訊號，獲得載子濃度(NCV)、空乏區寬度(Wdep.)等參數。DLCP可得知元件的載子濃度(NDL)。</p>
+            </div>
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">External Quantum Efficiency (EQE) 外部量子效率</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">使用Enlitech QE-R系統，量測300至1350 nm之量子效率，對EQE與AM1.5G太陽光譜乘積積分後可得Jsc。</p>
+            </div>
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">Admittance Spectroscopy (AS) 變溫電性量測</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">採用Fluxim Paios量測模組搭配Linkam HFS600E-PB4變溫系統，擬合出元件中界面處的缺陷濃度、深度及載子復合速率。</p>
+            </div>
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">Suns-Voc 變光強度開路電壓量測</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">使用Sinton Instruments Suns-Voc MX，分析元件中界面、空乏區及中性區等區域的載子復合速率。</p>
+            </div>
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+              <h4 class="font-medium mb-2 text-sm">PL & TRPL 光致發光 / 時間解析螢光光譜</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">透過HORIBA iHR 550搭配638nm紅光雷射，量測能帶結構、缺陷種類及載子壽命等資訊。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== BATTERY CHARACTERIZATION ===== -->
+        <section id="battery-characterization" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              Battery – Electrochemical & Materials Analysis
+            </h2>
+            <p class="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed mb-8">
+              本團隊整合多項電化學量測技術，可全面評估電池材料與元件的電化學反應特性與操作穩定性。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Cyclic Voltammetry (CV)</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">鑑定材料氧化還原反應電位與反應可逆性</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Galvanostatic Charge–Discharge (GCD)</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">評估材料比容量、倍率性能與循環穩定性</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Linear Sweep Voltammetry (LSV)</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">量測電解質之電化學穩定窗口</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Electrochemical Impedance (EIS)</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">分析歐姆阻抗、界面電荷轉移阻抗及離子傳輸行為</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">In-situ SEM</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">即時觀測電極材料於充放電過程中形貌與結構變化</p>
+            </div>
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+              <h4 class="font-medium text-sm mb-1">Dynamic Light Scattering (DLS)</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">分析粉體粒徑分佈與分散均勻性</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</Layout>

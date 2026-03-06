@@ -1,0 +1,211 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Toc from "@/components/widgets/Toc.astro";
+
+const headings = [
+  { depth: 2, slug: "battery", text: "Energy Storage Systems" },
+  { depth: 3, slug: "sustainable-anodes", text: "Sustainable Anodes" },
+  { depth: 3, slug: "high-performance-cathodes", text: "High-Performance Cathodes" },
+  { depth: 3, slug: "advanced-electrolytes", text: "Advanced Electrolytes" },
+  { depth: 2, slug: "solar", text: "Thin-Film Compound Photovoltaics" },
+  { depth: 3, slug: "alkali-metal-cigs", text: "Alkali Metal-Treated CIGS" },
+  { depth: 3, slug: "radiation-stability", text: "Radiation Stability & Self-Healing" },
+  { depth: 3, slug: "photoelectrodes", text: "CIGS Photoelectrodes" },
+];
+
+const filtered = headings.filter(h => h.depth <= 3);
+---
+
+<Layout
+  title="Research – TYLin Lab"
+  description="Research areas of TYLin Lab: sustainable energy storage systems and thin-film compound photovoltaic technology."
+  keywords="CIGS solar cells, lithium-ion battery, solid-state electrolyte, energy storage, thin-film photovoltaics"
+>
+  <!-- Mobile TOC -->
+  <div class="block lg:hidden px-7 pt-6">
+    <Toc headings={filtered} />
+  </div>
+
+  <div class="relative site-container mx-auto my-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <!-- Left TOC -->
+      <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
+        <div class="w-full" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h1 class="text-3xl font-brand tracking-tight sm:text-4xl lg:text-5xl mb-4">Research</h1>
+          <p class="text-neutral-600 dark:text-neutral-400 mb-12 text-lg">
+            Our lab focuses on two major research themes: sustainable energy storage systems and thin-film compound photovoltaic technology.
+          </p>
+        </div>
+
+        <!-- ===== BATTERY SECTION ===== -->
+        <section id="battery" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl lg:text-4xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              ⚡ Sustainable Materials for Energy Storage Systems
+            </h2>
+            <div class="prose dark:prose-invert max-w-none mb-8">
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                面對全球能源轉型趨勢與環境永續的挑戰，本實驗室致力於開發兼具永續價值與高能量密度的儲能材料與技術。我們聚焦於鋰／鈉離子電池元件，從材料來源、結構設計到界面工程，提出多樣化的解決方案，包含將工業與生物廢棄物轉化為高效能負極材料、透過先進改質與結構工程提升正極穩定性及設計高安全性之固態與複合電解質系統。
+              </p>
+              <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm mt-3">
+                In response to global energy transition trends and environmental sustainability challenges, this laboratory is dedicated to developing energy storage materials and technologies that combine sustainability with high energy density. Our research focuses on key components of lithium- and sodium-ion batteries, spanning material sourcing, structural design, and interface engineering.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sustainable Anodes -->
+          <div id="sustainable-anodes" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-green-700 dark:text-green-400">
+              Sustainable Anodes: Waste Transformation & Bio-derived Carbon
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">永續負極材料開發</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                相較於傳統負極材料，永續來源負極在降低碳足跡與材料成本方面具有明顯優勢。本實驗室以資源循環與材料結構工程為核心，將工業廢料與生質來源材料轉化為高性能負極，並應用於鋰／鈉離子儲能系統。
+              </p>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">矽廢料回收與結構設計</h4>
+                <p>針對矽基負極在充放電過程中易產生劇烈體積變化的問題，本實驗室以工業廢矽為原料，結合合金化處理與多孔結構設計，為材料提供體積緩衝空間。此類結構上的轉變不僅提升廢棄物再利用之附加價值，同時有效改善矽基負極的結構穩定性與循環壽命。</p>
+              </div>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">生質碳材料與鋰／鈉離子電池應用</h4>
+                <p>利用農業廢棄物或天然生質材料作為前驅體，透過熱燒結製程與表面改質技術改變碳材料之微結構，開發適合鋰／鈉離子嵌入行為的硬碳負極。生質碳材料取得來源廣泛且具永續性，並可透過調整結構提升離子傳輸效率，展現優異的導電性與化學穩定性。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- High-Performance Cathodes -->
+          <div id="high-performance-cathodes" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-green-700 dark:text-green-400">
+              High-Performance Cathodes: Surface Modification & Structural Engineering
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">高效能正極材料改質</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                高能量密度正極材料在高電壓操作與長期循環條件下易產生結構劣化，進而影響電池安全性與壽命。本實驗室正極材料研究著重於透過材料改質與結構工程，提升正極材料之結構穩定性與電化學可靠度。
+              </p>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">橄欖石結構正極之表面工程</h4>
+                <p>針對磷酸鹽類橄欖石結構正極材料（如 LFP）在高電壓操作下可能面臨的界面副反應與動力學限制，本實驗室發展多元表面改質與包覆設計，在正極表面建造具離子與電子傳輸能力的保護介面，有效降低電解液分解反應並抑制過渡金屬溶解。</p>
+              </div>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">NMC正極之多元素摻雜設計</h4>
+                <p>透過多元素摻雜技術，改變NMC正極材料之晶體結構與局部化學環境，穩定其在高脫鋰狀態下的結構完整性，並有助於抑制相變化與熱穩定性，使材料在維持高電容量的同時，兼具良好的循環壽命與安全性。</p>
+              </div>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">薄膜正極製程與介面機制研究</h4>
+                <p>結合物理氣相沉積（PVD）技術製備薄膜正極材料（如 NMC、LCO），透過在不同基材上精準成長具特定取向與微結構之活性物質薄膜，可實現薄膜成分、結晶性與厚度之奈米尺度變化。相較於傳統多孔粉體電極，此薄膜系統可排除導電碳與黏著劑等非本質因素的干擾，得以專注分析電極電解質間介面反應。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Advanced Electrolytes -->
+          <div id="advanced-electrolytes" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-green-700 dark:text-green-400">
+              Advanced Electrolytes: Solid-State & Composite Systems
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">先進電解質設計</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                相較於傳統鋰電池而言，使用固態電解質之鋰金屬電池具有更高的安全性和更佳的能量密度，因此成為一項備受矚目的技術。本實驗室研究方向著重在開發具高安全性、高機械強度與高效能之電解質系統，包含氧化物陶瓷薄膜電解質、陶瓷-聚合物複合電解質及全固態薄膜電池。
+              </p>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">氧化物陶瓷薄膜電解質暨全固態薄膜電池</h4>
+                <p>石榴石型固態電解質具備優異的鋰枝晶抵禦能力與良好的化學穩定性，為高安全性固態電池的重要材料體系。透過摻雜元素與組成配置，可進一步提升其離子導率與電化學穩定窗口。我們著重於石榴石型氧化物陶瓷(LLZO)電解質薄膜之製備，並透過介面工程改善電解質與負極、正極之接合，將負極、電解質與正極以薄膜形式整合，組成微型全固態薄膜電池。</p>
+              </div>
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <h4 class="font-medium mb-2">聚合物複合電解質</h4>
+                <p>本研究發展介於固態與液態之間的複合電解質，結合無機陶瓷填料與聚合物基材之優勢，以提升離子導率、機械強度，並同時增強電極和電解質界面的兼容性。透過引入具鋰離子傳導能力之活性填料或結構性強化相，可建構連續離子傳輸通道，並藉由提升電解質提升整體機械穩定性，以物理方式抑制鋰枝晶生長。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SOLAR SECTION ===== -->
+        <section id="solar" class="mb-20 scroll-mt-24">
+          <div data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h2 class="text-2xl font-brand tracking-tight sm:text-3xl lg:text-4xl mb-6 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+              ☀️ Thin-Film Compound Photovoltaic Technology
+            </h2>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-6">薄膜化合物光伏技術</p>
+            <div class="prose dark:prose-invert max-w-none mb-8">
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                具黃銅礦結構之銅銦鎵硒化合物具有相當高的光吸收係數，因此在僅2毫米的厚度下有效吸收大部分的太陽光，進一步製作為輕、薄、可撓的軟性太陽能電池。此外，銅銦鎵硒因材料的本質缺陷而有著優異的抗輻射性能，在高能質子或電子之轟擊後仍可迅速修復，有望應用在新世代太空用太陽能電池。本實驗室研究方向將著重在鹼金屬處理對於銅銦鎵硒化合物之缺陷變化、輻射線轟擊與修復機制探討，並利用變溫光學及電性量測進行探討。
+              </p>
+              <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm mt-3">
+                Copper indium gallium selenide (CIGS) compounds with a chalcopyrite structure exhibit exceptionally high optical absorption coefficients, allowing them to effectively absorb most of the sunlight even at a thickness of just 2 mm. This makes them ideal for the development of lightweight, thin, and flexible solar cells. Our laboratory focuses on investigating the effects of alkali metal treatments on CIGS defect properties, exploring radiation damage and self-healing mechanisms.
+              </p>
+            </div>
+
+            <!-- Historical Background -->
+            <div class="p-5 rounded-xl bg-amber-50/50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 mb-8">
+              <h4 class="font-medium mb-3 text-amber-800 dark:text-amber-300">薄膜化合物光伏技術的歷史演進</h4>
+              <p class="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+                太陽能電池技術依材料與結構特性分為不同代次，其中第二代光伏技術以薄膜化合物為核心，代表性材料包含非晶矽（a-Si）、銅銦鎵硒（CIGS）與碲化鎘（CdTe）等太陽能電池。銅銦鎵硒太陽能電池具可調控能隙與高吸收係數等特性，最早由Kazmerski等人於1976年成功製備，並歷經數十年的材料組成調控、製程優化與元件結構設計，逐步發展為具高度研究成熟度的薄膜光伏技術平台。發展至今，其研究電池最高轉換效率已於2024年由瑞典Uppsala大學達到23.6%。
+              </p>
+            </div>
+          </div>
+
+          <!-- Alkali Metal-Treated CIGS -->
+          <div id="alkali-metal-cigs" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-amber-700 dark:text-amber-400">
+              Alkali Metal-Treated CIGS Solar Cells
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">鹼金屬處理之銅銦鎵硒太陽能電池</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                在銅銦鎵硒太陽能電池的發展歷程中，最早引入的鈉初期常被視為製程污染，然而隨著研究進展，除了鈉，其他鹼金屬如鉀、銣、銫等元素也被證實能改善元件性能，通常透過如PDT等後處理方式將元素引入銅銦鎵硒吸收層。
+              </p>
+              <p>
+                由於銅銦鎵硒化合物可透過鹼金屬處理調控缺陷性質，對元件的益處包括透過不同鹼金屬間的離子交換來鈍化有害缺陷，以及透過晶界與表面改質調整能帶結構與界面性質。藉由對不同鹼金屬處理樣品進行變溫光學與電性量測，可進一步釐清其對提升元件效率與穩定性的關鍵作用。
+              </p>
+            </div>
+          </div>
+
+          <!-- Radiation Stability -->
+          <div id="radiation-stability" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-amber-700 dark:text-amber-400">
+              Radiation Stability & Self-Healing Mechanisms for Space Applications
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">銅銦鎵硒太陽能電池應用於太空的輻射穩定性與修復機制探討</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                銅銦鎵硒太陽能電池應用於太空環境中，易受到太空中存在的高能量輻射如質子、α粒子、電子等造成損傷而降低元件壽命，其中多數人造衛星的運行範圍在低地球軌道（low-Earth orbit, LEO），此範圍內由質子佔大多數輻射的組成，因此可透過質子的轟擊模擬太空環境下輻射線轟擊對於元件的損傷。
+              </p>
+              <p>
+                由淺層缺陷銅空缺（V<sub>Cu</sub>）主導形成p-type特性的黃銅礦銅銦鎵硒具有極大的抗輻射特性，在轟擊後所造成的晶格位移損傷及缺陷，可透過光熱浸潤等效應可使元件自修復以回復或提升性能，因此在輻射線如質子等照射後仍有極高的回復力，可延長其應用於太空環境的壽命。
+              </p>
+              <p>
+                搭配模擬軟體以及太陽能電池的電流電壓基本特性、光激發螢光(PL)、時間解析光激發螢光光譜(TRPL)、導納頻譜法(AS)、阻抗量測(EIS)、瞬態光電流響應(TPC)、瞬態光電壓(TPV)等，將可進一步釐清材料內部的自修復機制。
+              </p>
+            </div>
+          </div>
+
+          <!-- CIGS Photoelectrodes -->
+          <div id="photoelectrodes" class="mb-12 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            <h3 class="text-xl font-semibold mb-4 text-amber-700 dark:text-amber-400">
+              CIGS Thin Films as Photoelectrodes
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-500 mb-4">銅銦鎵硒薄膜化合物應用於光電極</p>
+            <div class="space-y-4 text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+              <p>
+                銅銦鎵硒薄膜化合物除了應用在太陽能電池中，由於其爲p型半導體，也可作為光陰極用於光催化水分解產生氫氣。其具有高光吸收係數，且導帶位置適合氫氣析出反應，並可透過調整銦與鎵比例控制能隙，以提升光電轉換效率與光電流密度，同時降低載子復合。
+              </p>
+              <p>
+                銅銦鎵硒薄膜化合物搭配n型緩衝層及表面保護層等結構，可改善界面電子傳輸及化學穩定性，使光陰極在長時間運作中保持高效能。
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</Layout>

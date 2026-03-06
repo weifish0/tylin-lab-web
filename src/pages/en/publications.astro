@@ -1,0 +1,493 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Toc from "@/components/widgets/Toc.astro";
+
+const headings = [
+  { depth: 2, slug: "journal-articles", text: "Journal Articles" },
+  { depth: 2, slug: "conference-papers", text: "Conference Papers" },
+];
+
+const filtered = headings.filter(h => h.depth <= 3);
+
+// Journal articles data
+const journalArticles = [
+  {
+    year: 2026,
+    authors: "Lung-Hsin Tu, Jun-Nan Liu, Yung-Ling Chang, Thung-Yu Tsai, Ngoc Thanh Thuy Tran, Rong-Zhi Chen, <strong>Tzu-Ying Lin</strong>, Shih-kang Lin, Chih-Huang Lai",
+    title: "Scalable cesium/potassium incorporation via CuGa: CsF/KF precursors enables high-efficiency selenized CIGSe solar cells",
+    journal: "Solar Energy Materials and Solar Cells",
+    volume: "298, 114151",
+    doi: "10.1016/j.solmat.2025.114151",
+  },
+  {
+    year: 2025,
+    authors: "Huagui Lai, Jingwei Zhu, Rui-Tung Kuo, Urs Aeberhard, Zhan-Hong Lin, Nada Mrkyvkova, Jincheng Luo, Severin Siegrist, Philipp Wechsler, Chih-Jen Shih, Peter Siffalovic, Cong Chen, Ayodhya Nath Tiwari, <strong>Tzu-Ying Lin*</strong>, Dewei Zhao, Fan Fu",
+    title: "Tailored PEDOT:PSS phase segregation for high-efficiency flexible all-perovskite tandem solar cells and mini-modules",
+    journal: "Nature Communications",
+    volume: "",
+    doi: "10.1038/s41467-025-66479-0",
+    note: "Corresponding author",
+  },
+  {
+    year: 2025,
+    authors: "Kai-Chun Lo, Cheng-Wei Kao, Ting-Shan Chan, Chen-Yu Wu, Yu-Ming Lin, <strong>Tzu-Ying Lin*</strong>",
+    title: "A Silver Lining for Space Solar Cells: Ag-Enhanced CIGS Solar Cells Resist and Recover From Radiation",
+    journal: "Solar RRL",
+    volume: "9(24), e202500646",
+    doi: "10.1002/solr.202500646",
+    note: "Corresponding author",
+  },
+  {
+    year: 2025,
+    authors: "Maliya Syabriyana, Yung-Hsun Chen, Hsin-Fang Chang, Duc-Chau Nguyen, De-Shiang Liou, Ying-Hao Chu, <strong>Tzu-Ying Lin*</strong>, Chih-Huang Lai",
+    title: "Efficiency Boost in Highly Flexible Cu(In, Ga)Se₂ Solar Cells on Mica by One-Step Sputtering with Rear-Side Modification",
+    journal: "Solar RRL",
+    volume: "9(18), 202500333",
+    doi: "10.1002/solr.202500333",
+    note: "Corresponding author",
+  },
+  {
+    year: 2025,
+    authors: "Fu-Wei Chang, Che-Ya Wu, <strong>Tzu-Ying Lin*</strong>",
+    title: "Design and integration of glass-fiber-cloth networks in PEO–LLZTO composite: a multifunctional approach for electrolyte engineering",
+    journal: "Chemical Communications",
+    volume: "61, 10768-10771",
+    doi: "10.1039/D5CC01390A",
+    note: "Corresponding author",
+  },
+  {
+    year: 2025,
+    authors: "Jun-Nan Liu, Chia-Chen Chung, Lung-Hsin Tu, Tzu-Yi Yang, Yu-Ren Peng, Wei-Chih Lin, Chien-Yu Lai, Yi-Jen Yu, <strong>Tzu-Ying Lin</strong>, Yu-Lun Chueh",
+    title: "Enhancing Cu(In, Ga)Se₂ solar cell efficiency with vertically channel-stacked WSe₂ rear passivation layers",
+    journal: "Nano Energy",
+    volume: "138, 110802",
+    doi: "10.1016/j.nanoen.2025.110802",
+  },
+  {
+    year: 2024,
+    authors: "Yung-Hsuan Chen, Rui-Tung Kuo, Wei-Chih Lin, Chien-Yu Lai, <strong>Tzu-Ying Lin*</strong>",
+    title: "Cesium Modulation in Cu(In, Ga)(S, Se)₂ Solar Cells: Comprehensive Analysis on Interface, Surface, and Grain Boundary",
+    journal: "ACS Applied Materials & Interfaces",
+    volume: "16(25), 32220–32231",
+    doi: "10.1021/acsami.4c03680",
+    note: "Corresponding author",
+  },
+  {
+    year: 2024,
+    authors: "<strong>Tzu-Ying Lin*</strong>, Chi-Feng Hsieh, Ayaka Kanai, Takahiko Yashiro, Wen-Jing Zeng, Jian-Jie Ma, Sung-Fu Hung, Mutsumi Sugiyama",
+    title: "Radiation resistant chalcopyrite CIGS solar cells: proton damage shielding with Cs treatment and defect healing via heat-light soaking",
+    journal: "Journal of Materials Chemistry A",
+    volume: "2(13), 7536-7548",
+    doi: "10.1039/D3TA06998B",
+    note: "Corresponding author",
+  },
+  {
+    year: 2024,
+    authors: "Che-Ya Wu, Shih-Nan Hsiao, Rui-Tung Kuo, Yu-Ching Chen, <strong>Tzu-Ying Lin*</strong>, Masaru Hori, Jenq-Gong Duh",
+    title: "Surface surgery on TiNb₂O₇ electrode via N₂/Air atmospheric pressure plasma jet for high-rate lithium-ion battery anode",
+    journal: "Applied Surface Science",
+    volume: "655, 159585",
+    doi: "10.1016/j.apsusc.2024.159585",
+    note: "Corresponding author",
+  },
+  {
+    year: 2024,
+    authors: "Wei-Chih Huang, Chong-Chi Chi, Chieh (Jeff) Lin, Chuenhou (Hao) Ouyang, <strong>Tzu-Ying Lin</strong>, Chih-Huang Lai",
+    title: "Boosting Kesterite Solar Cell Performance with Tantalum Oxide Passivation Layer and In Situ Formed Point Contacts",
+    journal: "Solar RRL",
+    volume: "8(7), 2301039",
+    doi: "10.1002/solr.202301039",
+  },
+  {
+    year: 2023,
+    authors: "Jien Han Siew, Yung-Hsuan Chen, Yung-Ling Chang, Chih-Huang Lai, <strong>Tzu-Ying Lin*</strong>",
+    title: "Heat Soaking for Improving Rollover From S at the Back of CIGSSe Solar Cells",
+    journal: "IEEE Journal of Photovoltaics",
+    volume: "13(4), 503-509",
+    doi: "10.1109/JPHOTOV.2023.3271891",
+    note: "Corresponding author",
+  },
+  {
+    year: 2023,
+    authors: "Shih-Chi Yang, <strong>Tzu-Ying Lin</strong>, Mario Ochoa, Huagui Lai, Radha Kothandaraman, Fan Fu, Ayodhya N. Tiwari, Romain Carron",
+    title: "Efficiency boost of bifacial Cu(In,Ga)Se₂ thin-film solar cells for flexible and tandem applications with silver-assisted low-temperature process",
+    journal: "Nature Energy",
+    volume: "8(1), 40-51",
+    doi: "10.1038/s41560-022-01157-9",
+  },
+  {
+    year: 2022,
+    authors: "Pu-Yang Chen, Rui-Tung Kuo, <strong>Tzu-Ying Lin*</strong>",
+    title: "Unilateral modified composite electrolyte by high modulus ceramics filling",
+    journal: "MRS Energy & Sustainability",
+    volume: "9(2), 360-368",
+    doi: "10.1557/s43581-022-00045-9",
+    note: "Corresponding author",
+  },
+  {
+    year: 2022,
+    authors: "Che-Ya Wu, <strong>Tzu-Ying Lin*</strong>, Jenq-Gong Duh",
+    title: "Constructing cellulose nanofiber/Si composite 3D-Net structure from waste rice straw via freeze drying process for lithium-ion battery anode materials",
+    journal: "Materials Chemistry and Physics",
+    volume: "285, 126107",
+    doi: "10.1016/j.matchemphys.2022.126107",
+    note: "Corresponding author",
+  },
+  {
+    year: 2021,
+    authors: "Yu-Hsiang Wang, Lung-Hsin Tu, Yung-Ling Chang, Shih-Kai Lin, <strong>Tzu-Ying Lin</strong>, Chih-Huang Lai",
+    title: "Surface sulfurization of Cu(In,Ga)Se₂ solar cells by cosputtering In₂S₃ in the one-step sputtering process",
+    journal: "ACS Applied Energy Materials",
+    volume: "4(10), 11555-11563",
+    doi: "10.1021/acsaem.1c02299",
+  },
+  {
+    year: 2020,
+    authors: "<strong>Tzu-Ying Lin*</strong>, Takahiko Yashiro, Ishwor Khatri, Mutsumi Sugiyama",
+    title: "Characterization on proton irradiation-damaged interfaces of CIGS-related multilayered compound semiconductors for solar cells by EIS",
+    journal: "Japanese Journal of Applied Physics",
+    volume: "59(5), 058003",
+    doi: "10.35848/1347-4065/ab891f",
+    note: "Corresponding author",
+  },
+  {
+    year: 2020,
+    authors: "<strong>Tzu-Ying Lin*</strong>, Ishwor Khatri, Junpei Matsuura, Kosuke Shudo, Wei-Chih Huang, Mutsumi Sugiyama, Chih-Huang Lai, Tokio Nakada",
+    title: "Alkali-induced grain boundary reconstruction on Cu(In,Ga)Se₂ thin film solar cells using cesium fluoride post deposition treatment",
+    journal: "Nano Energy",
+    volume: "68, 104299",
+    doi: "10.1016/j.nanoen.2019.104299",
+    note: "Corresponding author",
+  },
+  {
+    year: 2020,
+    authors: "Ishwor Khatri, <strong>Tzu-Ying Lin</strong>, Takahiko Yashiro, Mutsumi Sugiyama",
+    title: "Temperature-dependent current–voltage and admittance spectroscopy analysis on cesium-treated Cu(In₁₋ₓ,Gaₓ)Se₂ solar cell",
+    journal: "Progress in Photovoltaics: Research and Applications",
+    volume: "28(11), 1158-1166",
+    doi: "10.1002/pip.3321",
+  },
+  {
+    year: 2020,
+    authors: "Ishwor Khatri, Takahiko Yashiro, <strong>Tzu-Ying Lin</strong>, Mutsumi Sugiyama, Tokio Nakada",
+    title: "Metastable Behavior on Cesium Fluoride-Treated Cu(In₁₋ₓ,Gaₓ)Se₂ Solar Cells",
+    journal: "Physica status solidi (RRL)",
+    volume: "14(4), 1900701",
+    doi: "10.1002/pssr.201900701",
+  },
+  {
+    year: 2019,
+    authors: "Ishwor Khatri, <strong>Tzu-Ying Lin</strong>, Tokio Nakada, Mutsumi Sugiyama",
+    title: "Proton Irradiation on CsF-Free and CsF-Treated Cu(In,Ga)Se₂ Solar Cells and Annealing Effects under Illumination",
+    journal: "Physica status solidi (RRL)",
+    volume: "13(12), 1900519",
+    doi: "10.1002/pssr.201900519",
+  },
+  {
+    year: 2019,
+    authors: "Ishwor Khatri, <strong>Tzu-Ying Lin</strong>, Tokio Nakada, Mutsumi Sugiyama",
+    title: "The Effect of Electron Irradiation on CsF-Free and CsF-Treated Cu(In₁₋ₓ,Gaₓ)Se₂ Solar Cells",
+    journal: "Physica status solidi (RRL)",
+    volume: "13(11), 1900415",
+    doi: "10.1002/pssr.201900415",
+  },
+  {
+    year: 2019,
+    authors: "Junpei Matsuura, Ishwor Khatri, <strong>Tzu-Ying Lin</strong>, Mutsumi Sugiyama, Tokio Nakada",
+    title: "Impact of heat-light soaking and heat-bias soaking on NaF-treated CIGS thin film solar cells",
+    journal: "Progress in Photovoltaics: Research and Applications",
+    volume: "27(7), 623-629",
+    doi: "10.1002/pip.3135",
+  },
+  {
+    year: 2019,
+    authors: "Hadi Parsamehr, Ying-Jiu Lu, <strong>Tzu-Ying Lin</strong>, An-Pang Tsai, Chih-Huang Lai",
+    title: "In-Situ observation of local atomic structure of Al-Cu-Fe quasicrystal formation",
+    journal: "Scientific Reports",
+    volume: "9(1), 1245",
+    doi: "10.1038/s41598-018-37644-x",
+  },
+  {
+    year: 2019,
+    authors: "Jordi Sastre, <strong>Tzu-Ying Lin (co-first)</strong>, Alejandro N. Filippin, Agnieszka Priebe, Enrico Avancini, Johann Michler, Ayodhya N. Tiwari, Yaroslav E. Romanyuk, Stephan Buecheler",
+    title: "Aluminum-assisted densification of cosputtered lithium garnet electrolyte films for solid-state batteries",
+    journal: "ACS Applied Energy Materials",
+    volume: "2(12), 8511-8524",
+    doi: "10.1021/acsaem.9b01387",
+  },
+  {
+    year: 2018,
+    authors: "Chung-Fu Cheng, Yu-Ming Chen, Feng Zou, Kai-Chieh Yang, <strong>Tzu-Ying Lin</strong>, Kewei Liu, Chih-Huang Lai, Rong-Ming Ho, Yu Zhu",
+    title: "Nanoporous gyroid Ni/NiO/C nanocomposites from block copolymer templates with high capacity and stability for lithium storage",
+    journal: "Journal of Materials Chemistry A",
+    volume: "6(28), 13676-13684",
+    doi: "10.1039/c8ta04077j",
+  },
+  {
+    year: 2018,
+    authors: "Alejandro N. Filippin, <strong>Tzu-Ying Lin (co-first)</strong>, Michael Rawlence, Tanja Zünd, Kostiantyn Kravchyk, Jordi Sastre-Pellicer, Stefan G. Haass, Aneliia Wäckerlin, Maksym V. Kovalenko, Stephan Buecheler",
+    title: "Ni–Al–Cr superalloy as high temperature cathode current collector for advanced thin film Li batteries",
+    journal: "RSC Advances",
+    volume: "8(36), 20304-20313",
+    doi: "10.1039/c8ra02461h",
+  },
+  {
+    year: 2018,
+    authors: "Michael Rawlence, Alejandro Nicolas Filippin, Aneliia Waeckerlin, <strong>Tzu-Ying Lin</strong>, Eduardo Cuervo-Reyes, Arndt Remhof, Corsin Battaglia, Jennifer Rupp, Stephan Buecheler",
+    title: "Effect of gallium substitution on lithium-ion conductivity and phase evolution in sputtered Li₇₋₃ₓGaₓLa₃Zr₂O₁₂ thin films",
+    journal: "ACS Applied Materials & Interfaces",
+    volume: "10(16), 13720-13728",
+    doi: "10.1021/acsami.8b03163",
+  },
+  {
+    year: 2017,
+    authors: "<strong>Tzu-Ying Lin</strong>, Chia-Hsiang Chen, Liang-Wei Wang, Wei-Chih Huang, Yao-Wen Jheng, Chih-Huang Lai",
+    title: "Engineering Na-transport to achieve high efficiency in ultrathin Cu(In,Ga)Se₂ solar cells with controlled preferred orientation",
+    journal: "Nano Energy",
+    volume: "41, 697-705",
+    doi: "10.1016/j.nanoen.2017.10.015",
+  },
+  {
+    year: 2016,
+    authors: "Wei-Hao Ho, Chia-Hao Hsu, Tzu-Hsuan Yeh, Yu-Han Chang, Shih-Yuan Wei, <strong>Tzu-Ying Lin</strong>, Chih-Huang Lai",
+    title: "Room-temperature chemical solution treatment for flexible ZnS(O,OH)/Cu(In,Ga)Se₂ solar cell",
+    journal: "ACS Applied Materials & Interfaces",
+    volume: "8(10), 6709-6717",
+    doi: "10.1021/acsami.5b11028",
+  },
+  {
+    year: 2016,
+    authors: "Liang-Wei Wang, Chung-Fu Cheng, Jung-Wei Liao, Chiu-Yen Wang, Ding-Shuo Wang, Kuo-Feng Huang, <strong>Tzu-Ying Lin</strong>, Rong-Ming Ho, Lih-Juann Chen, Chih-Huang Lai",
+    title: "Thermal dewetting with a chemically heterogeneous nano-template for self-assembled L1₀ FePt nanoparticle arrays",
+    journal: "Nanoscale",
+    volume: "8(7), 3926-3935",
+    doi: "10.1039/c5nr08339g",
+  },
+  {
+    year: 2016,
+    authors: "<strong>Tzu-Ying Lin</strong>, Chia-Hsiang Chen, Wei-Chih Huang, Wei-Hao Ho, Yan-Huie Wu, Chih-Huang Lai",
+    title: "Direct probing Se spatial distribution in Cu(InₓGa₁₋ₓ)Se₂ solar cells: A key factor to achieve high efficiency performance",
+    journal: "Nano Energy",
+    volume: "19, 269-278",
+    doi: "10.1016/j.nanoen.2015.11.003",
+  },
+];
+
+// Conference papers data
+const conferencePapers = [
+  { year: 2025, authors: "Chen-Yu Wu, Chien-Yu Lai, Cheng-Wei Kao, Ting-Shan Chan, <strong>Tzu-Ying Lin</strong>", title: "The Effect of Alkali Metal for Cu(In,Ga)(Se, S)₂ Solar Cells: The Diffusion Mechanism of Different Alkali Metals", venue: "MRS-Taiwan Annual Meeting 2025" },
+  { year: 2025, authors: "Ru-Hong Chiu, Che-Ya Wu, <strong>Tzu-Ying Lin</strong>", title: "Synergistic Enhancement of Structural Stability and Electrochemical Performance in NMC811 via Na⁺/Al³⁺ Co-Doping", venue: "ICGET 2025" },
+  { year: 2025, authors: "Tsung-Ying Yang, I-Hua Kao, Che-Ya Wu, <strong>Tzu-Ying Lin</strong>", title: "Porous Hard Carbon/Silicon Composite Derived from Biowaste for High-Performance Lithium-Ion Battery Anodes", venue: "ICGET 2025" },
+  { year: 2025, authors: "Yu-Ming Lin, <strong>Tzu-Ying Lin</strong>", title: "Dual-alkali Incorporation Enhances Radiation Resistance in Cu(In,Ga)(Se, S)₂ Thin-film Solar Cells", venue: "MRS-Taiwan Annual Meeting 2025" },
+  { year: 2025, authors: "Hsuan-Kai Tseng, Chih-Tsui Kuo, Jie-Ming Chen, Chen-Yu Wu, Tsung-Ying Yang, Li-Yin Hsiao, Wen-Lin Wang, <strong>Tzu-Ying Lin</strong>", title: "High-Performance Li-Ion/Na-Ion Anodes Enabled by Sn Containing High-Entropy Alloy Nanoparticles", venue: "TACT 2025" },
+  { year: 2025, authors: "Hsuan-Kai Tseng, Li-Ying Hsiao, Wen-Lin Wang, <strong>Tzu-Ying Lin</strong>", title: "Biochar-derived hard carbon anode coated with a nitrogen-doped carbon layer for high-performance lithium-ion batteries", venue: "TACT 2025" },
+  { year: 2025, authors: "Tsung-Yen Tsai, <strong>Tzu-Ying Lin</strong>", title: "Eco-Friendly CdS/Zn(O,S)/AZO Coatings on CIGSSe for Stable Photoelectrochemical Performance", venue: "TACT 2025" },
+  { year: 2025, authors: "Hsuan-Kai Tseng, I-Hung Hsu, Fu-Wei Chang, Che-Ya Wu, Ru-Hong Chiu, Chen-Yu Wu, Chen-Hsin Liao, <strong>Tzu-Ying Lin</strong>", title: "Monolithic Integration of Novel Quasi Solid State LIBs and solar driven systems", venue: "E-MRS 2025 Fall" },
+  { year: 2025, authors: "Tsung-Yen Tsai, Tzu-Yu Liu, <strong>Tzu-Ying Lin</strong>", title: "Optoiontronic-Guided Interfacial Engineering of CIGSSe Photoelectrodes", venue: "Int'l Plasma Technology Joint Conference 2025" },
+  { year: 2024, authors: "<strong>Tzu-Ying Lin</strong>", title: "Radiation resistant chalcopyrite Cu(In, Ga)Se₂-based thin film solar cells: self-healing via heat-light soaking", venue: "TASTI 2024" },
+  { year: 2024, authors: "Fu-Wei Chang, <strong>Tzu-Ying Lin</strong>", title: "Polymer/LLZTO Composite Electrolyte on Glass Fiber: Enhancing Solid-State Lithium-ion Battery Performance", venue: "MRS-Taiwan Annual Meeting 2024" },
+  { year: 2024, authors: "I-Hung Hsu, Wen-Ling Wang, <strong>Tzu-Ying Lin</strong>", title: "Enhancing Electrochemical Performance of Mn-rich LiMn₀.₈Fe₀.₂PO₄ Cathode: A Sustainable Approach with Biochar Carbon Coating", venue: "MRS-Taiwan Annual Meeting 2024" },
+  { year: 2024, authors: "Kai-Chun Lo, <strong>Tzu-Ying Lin</strong>", title: "Enhanced self-healing behaviors of (Ag,Cu)(In,Ga)Se₂ thin-film solar cells through Ag incorporation", venue: "PVSEC-35" },
+  { year: 2024, authors: "Rui-Tung Kuo, <strong>Tzu-Ying Lin</strong>", title: "Surface Modification of Ceramic Solid Electrolyte for Lithium Solid State Batteries with Amorphous-LLZO Thin Film", venue: "ICGET 2024" },
+  { year: 2024, authors: "Wei-Huang Chen, <strong>Tzu-Ying Lin</strong>", title: "Enhanced Radiation Resistance in Potassium doped Cu(In,Ga)(S,Se)₂ Thin-film Solar Cells", venue: "PVSEC-35" },
+  { year: 2024, authors: "Yao-Kai Chang, <strong>Tzu-Ying Lin</strong>", title: "Self-healing effects of heat-light soaking on proton-bombarded Cu(In,Ga)(S,Se)₂ solar cells for LEO applications", venue: "PVSEC-35" },
+  { year: 2024, authors: "Yi-Chen Huang, Hsuan-Kai Tseng, <strong>Tzu-Ying Lin</strong>", title: "Recycled PV Industry Wastes as Silicon Anode Modified by UV-Curable Self-healing Cross-linked Binder", venue: "MRS-Taiwan Annual Meeting 2024" },
+  { year: 2024, authors: "Rui-Tung Kuo, <strong>Tzu-Ying Lin</strong>", title: "Plating Behavior and Charge Transfer Kinetics of the Amorphous-LLZO Modified Solid Electrolyte", venue: "PRiME 2024 (ECS)" },
+  { year: 2024, authors: "Hsuan-Kai Tseng, <strong>Tzu-Ying Lin</strong>", title: "Innovative Strategies for Enhancing Energy Storage in EVs through Solar-charged Integration", venue: "E-MRS 2024 Fall" },
+  { year: 2024, authors: "Chien-Yu Lai, <strong>Tzu-Ying Lin</strong>", title: "The Effect of KF+CsF Alkali Post-Deposition Treatments and Surface Chemistry of Cu(In, Ga)(S, Se)₂ Solar Cells", venue: "52nd IEEE PVSC" },
+  { year: 2023, authors: "Chieh-Yu Lai, <strong>Tzu-Ying Lin</strong>", title: "Electrical Characteristics of CIGSSe Solar Cells with Varied S/(Se+S)", venue: "MRS-Taiwan 2023" },
+  { year: 2023, authors: "Hsuan-Kai Tseng, Yi-Chen Huang, Guan-Lin Tseng, <strong>Tzu-Ying Lin</strong>", title: "Recycling silicon wastes into a silicon anode utilizing a 3D cross-linked binder for lithium-ion batteries", venue: "MRS-Taiwan 2023" },
+  { year: 2023, authors: "Wei-Chih Lin, <strong>Tzu-Ying Lin</strong>", title: "Effect of Ag Incorporation in the Sulfurization after Selenization (Ag,Cu)(In,Ga)(S,Se)₂ Solar Cell", venue: "MRS-Taiwan 2023" },
+];
+
+// Group journals by year
+const journalsByYear: Record<number, typeof journalArticles> = {};
+journalArticles.forEach(article => {
+  if (!journalsByYear[article.year]) journalsByYear[article.year] = [];
+  journalsByYear[article.year].push(article);
+});
+const sortedYears = Object.keys(journalsByYear).map(Number).sort((a, b) => b - a);
+
+// Group conferences by year
+const conferencesByYear: Record<number, typeof conferencePapers> = {};
+conferencePapers.forEach(paper => {
+  if (!conferencesByYear[paper.year]) conferencesByYear[paper.year] = [];
+  conferencesByYear[paper.year].push(paper);
+});
+const confSortedYears = Object.keys(conferencesByYear).map(Number).sort((a, b) => b - a);
+---
+
+<Layout
+  title="Publications – TYLin Lab"
+  description="Publications from TYLin Lab: Journal articles and conference papers on CIGS solar cells, energy storage materials, and solid-state batteries."
+  keywords="publications, journal articles, CIGS, solar cells, lithium-ion battery, conference papers"
+>
+  <!-- Mobile TOC -->
+  <div class="block lg:hidden px-7 pt-6">
+    <Toc headings={filtered} />
+  </div>
+
+  <div class="relative site-container mx-auto my-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <!-- Left TOC -->
+      <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
+        <div class="w-full flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <div>
+            <h1 class="text-3xl font-brand tracking-tight sm:text-4xl lg:text-5xl mb-2">Publications</h1>
+            <p class="text-neutral-500 dark:text-neutral-400">
+              * denotes corresponding author
+            </p>
+          </div>
+          
+          <div class="relative w-full md:w-72 mt-2 md:mt-0">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-neutral-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              id="search-pub" 
+              placeholder="Search by title, author, or keyword..." 
+              class="block w-full pl-10 pr-3 py-2 border border-neutral-200 dark:border-neutral-700 rounded-lg leading-5 bg-white/50 dark:bg-neutral-800/50 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-pri focus:border-pri sm:text-sm transition-colors"
+            />
+          </div>
+        </div>
+
+        <!-- Journal Articles -->
+        <section id="journal-articles" class="mb-16 scroll-mt-24">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700"
+              data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            📄 Journal Articles
+          </h2>
+
+          {sortedYears.map((year) => (
+            <div class="mb-8 pub-year-block" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+              <h3 class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 sticky top-16 bg-bg-primary dark:bg-bg-primary-dark py-2 z-10">{year}</h3>
+              <ol class="space-y-4">
+                {journalsByYear[year].map((article) => (
+                  <li class="pub-item p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 hover:shadow-sm transition-shadow duration-200">
+                    <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed" set:html={article.authors} />
+                    <p class="text-sm font-medium text-neutral-900 dark:text-neutral-100 mt-1">
+                      {article.title}
+                    </p>
+                    <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+                      <em>{article.journal}</em>{article.volume ? `, ${article.volume}` : ''}
+                    </p>
+                    <div class="flex items-center gap-3 mt-2">
+                      {article.doi && (
+                        <a href={`https://doi.org/${article.doi}`} target="_blank" rel="noopener noreferrer"
+                           class="text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                          DOI: {article.doi}
+                        </a>
+                      )}
+                      {article.note && (
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">
+                          {article.note}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </section>
+
+        <!-- Conference Papers -->
+        <section id="conference-papers" class="mb-16 scroll-mt-24">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700"
+              data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+            🎤 Conference Papers
+          </h2>
+
+          {confSortedYears.map((year) => (
+            <div class="mb-8 pub-year-block" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+              <h3 class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 sticky top-16 bg-bg-primary dark:bg-bg-primary-dark py-2 z-10">{year}</h3>
+              <ol class="space-y-3">
+                {conferencesByYear[year].map((paper) => (
+                  <li class="pub-item p-3 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50">
+                    <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed" set:html={paper.authors} />
+                    <p class="text-sm font-medium text-neutral-900 dark:text-neutral-100 mt-1">{paper.title}</p>
+                    <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1"><em>{paper.venue}</em></p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function initSearch() {
+      const searchInput = document.getElementById('search-pub') as HTMLInputElement | null;
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase();
+        
+        const yearBlocks = document.querySelectorAll('.pub-year-block');
+        
+        yearBlocks.forEach((block) => {
+          let hasVisibleItem = false;
+          const items = block.querySelectorAll('.pub-item');
+          
+          items.forEach((item) => {
+            const text = item.textContent?.toLowerCase() || '';
+            if (text.includes(query)) {
+              item.classList.remove('hidden');
+              hasVisibleItem = true;
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+          
+          if (hasVisibleItem) {
+            block.classList.remove('hidden');
+          } else {
+            block.classList.add('hidden');
+          }
+        });
+
+        // Toggle section headers if no years are visible
+        const sections = [
+          { id: 'journal-articles', headerId: 'journal-articles-header' },
+          { id: 'conference-papers', headerId: 'conference-papers-header' }
+        ];
+
+        sections.forEach(sec => {
+          const sectionEl = document.getElementById(sec.id);
+          if (sectionEl) {
+            const visibleBlocks = sectionEl.querySelectorAll('.pub-year-block:not(.hidden)');
+            const header = sectionEl.querySelector('h2');
+            if (header) {
+              if (visibleBlocks.length === 0) {
+                header.classList.add('hidden');
+              } else {
+                header.classList.remove('hidden');
+              }
+            }
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSearch);
+    } else {
+      initSearch();
+    }
+    
+    // Support Astro view transitions 
+    document.addEventListener('astro:page-load', initSearch);
+  </script>
+</Layout>

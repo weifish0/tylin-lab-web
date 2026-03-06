@@ -57,7 +57,7 @@ const images = [
       
       let currentIndex = 0;
       const count = slides.length;
-      let interval: ReturnType<typeof setInterval>;
+      let interval: number | undefined;
       
       // Touch attributes
       let startX = 0;
@@ -91,11 +91,11 @@ const images = [
       
       function startAutoPlay() {
         stopAutoPlay();
-        interval = setInterval(next, 4000); // 4 seconds
+        interval = window.setInterval(next, 4000); // 4 seconds
       }
       
       function stopAutoPlay() {
-        if (interval) clearInterval(interval);
+        if (interval) window.clearInterval(interval);
       }
       
       // Event Listeners for Nav

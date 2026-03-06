@@ -23,7 +23,6 @@ export async function getStaticPaths() {
 // 使用 [...slug] 路由来处理包含斜杠的路径（官方推荐）
 // slug 参数是数组格式，需要转换为字符串来匹配 entry.id
 const { slug } = Astro.params;
-const slugString = Array.isArray(slug) ? slug.join('/') : (slug || '');
 
 // 从 props 获取 entry（在 SSG 模式下通过 getStaticPaths 传递）
 const { entry } = Astro.props;

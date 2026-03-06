@@ -1,5 +1,8 @@
 ---
+import Button from "@/components/ui/Button.astro";
+import { siteConfig } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
+import AnimatedText from "@/components/ui/AnimatedText.astro";
 import HeroCarousel from "@/components/home/HeroCarousel.astro";
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from "@/i18n/utils";

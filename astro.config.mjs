@@ -28,5 +28,13 @@ export default defineConfig({
     port: 5200,
   },
 
+  i18n: {
+    defaultLocale: 'zh',
+    locales: ['zh', 'en', 'ja'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
+
   integrations: [mdx(), sitemap()],
 });
