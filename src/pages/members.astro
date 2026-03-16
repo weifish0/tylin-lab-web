@@ -7,7 +7,7 @@ import { getEntry } from "astro:content";
 const entry = await getEntry("members", "list");
 const allMembers = entry?.data.members.map((m) => ({ data: m })) || [];
 
-const sortByOrder = (a, b) => (a.data.order || 99) - (b.data.order || 99);
+const sortByOrder = (a: any, b: any) => (a.data.order || 99) - (b.data.order || 99);
 
 const postdocs = allMembers.filter((m) => m.data.role === "Postdoc").sort(sortByOrder);
 const phdStudents = allMembers.filter((m) => m.data.role === "Ph.D. Students" || m.data.role === "Ph.D. Student").sort(sortByOrder);

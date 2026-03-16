@@ -173,7 +173,7 @@ function mobileMenuFunctionality() {
 }
 
 // @ts-ignore
-window.openMobileMenu = () => {
+window['openMobileMenu'] = () => {
 	document.getElementById("openMenu").classList.add("hidden");
 	document.getElementById("closeMenu").classList.remove("hidden");
 	document.getElementById("menu").classList.remove("hidden");
@@ -188,7 +188,7 @@ window.openMobileMenu = () => {
 };
 
 // @ts-ignore
-window.closeMobileMenu = () => {
+window['closeMobileMenu'] = () => {
 	document.getElementById("closeMenu").classList.add("hidden");
 	document.getElementById("openMenu").classList.remove("hidden");
 	document.getElementById("menu").classList.add("hidden");

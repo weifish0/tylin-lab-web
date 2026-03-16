@@ -169,6 +169,7 @@ const videoId = `workcard-video-${index}-${name.replace(/[^a-z0-9]+/gi, '-').toL
     (function() {
       'use strict';
 
+      // @ts-ignore
       const video = document.getElementById(videoId);
       if (!video || !(video instanceof HTMLVideoElement)) return;
 
