@@ -31,6 +31,23 @@ const news = defineCollection({
 	}),
 });
 
+const members = defineCollection({
+	loader: glob({ pattern: 'list.md', base: './src/content/members' }),
+	schema: z.object({
+		members: z.array(
+			z.object({
+				name: z.string(),
+				role: z.string(), // e.g. "Postdoc", "Ph.D. Students", "Master Students", "Alumni"
+				team: z.string().optional(),
+				email: z.string().optional(),
+				researchFocus: z.array(z.string()).optional(),
+				image: z.string().optional(), // Image path, e.g., "/assets/members/liyin-hsiao.jpg"
+				order: z.number().optional(), // For sorting
+			})
+		),
+	}),
+});
+
 // 4. 导出一个 `collections` 对象来注册你的集合
-export const collections = { post, news };
+export const collections = { post, news, members };
 

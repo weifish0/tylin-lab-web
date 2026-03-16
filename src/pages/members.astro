@@ -1,16 +1,31 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Toc from "@/components/widgets/Toc.astro";
+import MemberCard from "@/components/widgets/MemberCard.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("members", "list");
+const allMembers = entry?.data.members.map((m) => ({ data: m })) || [];
+
+const sortByOrder = (a, b) => (a.data.order || 99) - (b.data.order || 99);
+
+const postdocs = allMembers.filter((m) => m.data.role === "Postdoc").sort(sortByOrder);
+const phdStudents = allMembers.filter((m) => m.data.role === "Ph.D. Students" || m.data.role === "Ph.D. Student").sort(sortByOrder);
+const masterStudents = allMembers.filter((m) => m.data.role === "Master Students" || m.data.role === "Master Student").sort(sortByOrder);
+const undergrads = allMembers.filter((m) => m.data.role === "Undergraduate Researchers" || m.data.role === "Undergraduate").sort(sortByOrder);
+const visitingStudents = allMembers.filter((m) => m.data.role === "Visiting Students" || m.data.role === "Visiting Student").sort(sortByOrder);
+const alumni = allMembers.filter((m) => m.data.role === "Alumni").sort(sortByOrder);
 
 const headings = [
   { depth: 2, slug: "professor", text: "Professor" },
   { depth: 2, slug: "postdoc", text: "Postdoctoral Researchers" },
   { depth: 2, slug: "students", text: "Graduate Students" },
   { depth: 2, slug: "undergraduate", text: "Undergraduate Researchers" },
+  { depth: 2, slug: "visiting", text: "Visiting Students" },
   { depth: 2, slug: "alumni", text: "Alumni" },
 ];
 
-const filtered = headings.filter(h => h.depth <= 3);
+const filtered = headings.filter((h) => h.depth <= 3);
 ---
 
 <Layout
@@ -27,7 +42,7 @@ const filtered = headings.filter(h => h.depth <= 3);
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
       <!-- Left TOC -->
       <aside class="relative hidden lg:block lg:w-44 xl:w-52 flex-shrink-0">
-        <div class="toc-sticky-wrapper">
+        <div class="sticky top-24 toc-sticky-wrapper">
           <Toc headings={filtered} />
         </div>
       </aside>
@@ -75,9 +90,15 @@ const filtered = headings.filter(h => h.depth <= 3);
           <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
             Postdoctoral Researchers
           </h2>
-          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
-            <p class="text-sm">Information coming soon / 資料準備中</p>
-          </div>
+          {postdocs.length > 0 ? (
+            <div class="flex flex-col gap-4">
+              {postdocs.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+              <p class="text-sm">Information coming soon / 資料準備中</p>
+            </div>
+          )}
         </section>
 
         <!-- Graduate Students -->
@@ -85,9 +106,24 @@ const filtered = headings.filter(h => h.depth <= 3);
           <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
             Graduate Students
           </h2>
-          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
-            <p class="text-sm">Information coming soon / 資料準備中</p>
-          </div>
+
+          <h3 class="text-xl font-semibold mb-6 text-neutral-800 dark:text-neutral-200">Ph.D. Students</h3>
+          {phdStudents.length > 0 ? (
+            <div class="flex flex-col gap-4 mb-8">
+              {phdStudents.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <p class="text-neutral-500 dark:text-neutral-400 mb-8 italic">No Ph.D. students currently listed.</p>
+          )}
+
+          <h3 class="text-xl font-semibold mb-6 text-neutral-800 dark:text-neutral-200">Master Students</h3>
+          {masterStudents.length > 0 ? (
+            <div class="flex flex-col gap-4">
+              {masterStudents.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <p class="text-neutral-500 dark:text-neutral-400 italic">No master students currently listed.</p>
+          )}
         </section>
 
         <!-- Undergraduate Researchers -->
@@ -95,9 +131,31 @@ const filtered = headings.filter(h => h.depth <= 3);
           <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
             Undergraduate Researchers (專題生)
           </h2>
-          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
-            <p class="text-sm">Information coming soon / 資料準備中</p>
-          </div>
+          {undergrads.length > 0 ? (
+            <div class="flex flex-col gap-4">
+              {undergrads.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+              <p class="text-sm">Information coming soon / 資料準備中</p>
+            </div>
+          )}
+        </section>
+
+        <!-- Visiting Students -->
+        <section id="visiting" class="mb-16 scroll-mt-24" data-aos="fade-up-xs" data-aos-duration="500" data-aos-once="true">
+          <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
+            Visiting Students
+          </h2>
+          {visitingStudents.length > 0 ? (
+            <div class="flex flex-col gap-4">
+              {visitingStudents.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+              <p class="text-sm">Information coming soon / 資料準備中</p>
+            </div>
+          )}
         </section>
 
         <!-- Alumni -->
@@ -105,9 +163,15 @@ const filtered = headings.filter(h => h.depth <= 3);
           <h2 class="text-2xl font-brand tracking-tight sm:text-3xl mb-8 pb-3 border-b border-neutral-200 dark:border-neutral-700">
             Alumni
           </h2>
-          <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
-            <p class="text-sm">Information coming soon / 資料準備中</p>
-          </div>
+          {alumni.length > 0 ? (
+            <div class="flex flex-col gap-4">
+              {alumni.map((member) => <MemberCard member={member} />)}
+            </div>
+          ) : (
+            <div class="p-8 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-600 text-center text-neutral-400 dark:text-neutral-500">
+              <p class="text-sm">Information coming soon / 資料準備中</p>
+            </div>
+          )}
         </section>
 
       </main>

@@ -22,7 +22,7 @@ export const ui = {
     'footer.dept': '材料科學工程學系',
     'footer.univ': '國立清華大學',
     'footer.teacherOffice': '老師辦公室',
-    'footer.studentOffice': '學生辦公室',
+    'footer.studentOffice': '學生研究室',
     'footer.buildingD': '台達館',
     'footer.buildingMSE': '材料實驗館',
     'footer.buildingEng3': '工程三館',
@@ -35,7 +35,7 @@ export const ui = {
     
     // Homepage
     'home.latestNews': '最新消息',
-    'home.seeAllNews': '查看所有消息 &rarr;',
+    'home.seeAllNews': '查看所有消息',
     'home.researchAreas': '研究領域',
     'home.featuredWorks': '代表著作',
     'home.collaborators': '合作夥伴',
@@ -81,7 +81,7 @@ export const ui = {
     
     // Homepage
     'home.latestNews': 'Latest News',
-    'home.seeAllNews': 'See all news &rarr;',
+    'home.seeAllNews': 'See all news',
     'home.researchAreas': 'Research Areas',
     'home.featuredWorks': 'Featured Works',
     'home.collaborators': 'Collaborators',
