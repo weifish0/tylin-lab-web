@@ -50,7 +50,7 @@ export const ui = {
     'contact.address2': '',
 
     // SEO / Meta
-    'site.title': '林姿瑩老師實驗室 (TYLin Lab) | 清大材料系 (清華大學材料科學工程學系) - 能源材料與薄膜太陽能電池',
+    'site.title': '林姿瑩老師實驗室 (TYLin Lab) | 清大材料系 (清華大學材料科學工程學系) - 先進薄膜能源材料',
     'site.description': '國立清華大學材料系 (清大材料系) 林姿瑩老師 (TYLin Lab) 實驗室，研究領域涵蓋前瞻儲能材料、CIGS薄膜太陽能電池、固態電池與新型電解質系統。',
   },
   en: {
