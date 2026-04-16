@@ -12,7 +12,7 @@ const images = [
   <!-- Carousel Images -->
   <div class="flex transition-transform duration-500 ease-in-out carousel-track w-full" style="transform: translateX(0%);">
     {images.map((src, index) => (
-      <div class="w-full flex-none h-[400px] md:h-[500px] lg:h-[600px] relative bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+      <div class="w-full flex-none h-[400px] md:h-[500px] lg:h-[600px] relative bg-neutral-100 dark:bg-[#0b1220] flex items-center justify-center">
         <img 
           src={src} 
           alt={`Gallery image ${index + 1}`} 
@@ -23,7 +23,6 @@ const images = [
         <div class="hidden text-neutral-500">
           Carousel Image {index + 1}
         </div>
-        <div class="absolute inset-0 bg-black/10"></div>
       </div>
     ))}
   </div>
