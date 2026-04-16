@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main]
+  # 允許從 Actions 標籤手動執行此工作流程
+  workflow_dispatch:
+
+# 設定 GitHub Pages 的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 確保不會同時發生多次部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+
+      - name: Install, build, and setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build with Astro
+        run: pnpm run build
+        env:
+          PUBLIC_SITE_URL: "https://tylin-lab.mse.nthu.edu.tw/"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # Astro 預設的產出目錄
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
