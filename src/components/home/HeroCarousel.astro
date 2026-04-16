@@ -1,9 +1,10 @@
 ---
 const images = [
-  // 這裡放入你想展示的圖片路徑 (請替換為實際的路徑)
-  "/assets/home/style-poster.png",
-  "/assets/home/ChemComm_2025_01.jpg",
+  "/assets/home/hero-0.png",
+  "/assets/home/hero-1.png",
+  "/assets/home/hero-2.png",
   "/assets/home/hero-3.png",
+  "/assets/home/hero-4.png",
 ];
 ---
 
@@ -15,7 +16,7 @@ const images = [
         <img 
           src={src} 
           alt={`Gallery image ${index + 1}`} 
-          class="w-full h-full object-cover"
+          class="w-full h-full object-contain"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
         />
         <!-- 圖片載入失敗時的佔位符 (可以移除) -->
